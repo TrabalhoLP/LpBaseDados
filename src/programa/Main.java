@@ -4,11 +4,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Oi");
 		
 		Utilizador programa = new Utilizador();
 		
-		programa.iniciar();
+		//programa.iniciar();
+		
+		Arvore escola = new Arvore("Escola");
+		
+		escola.criaTabela("Alunos", 2);
+		
 	}
 
 }
