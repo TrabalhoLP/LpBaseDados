@@ -18,7 +18,7 @@ public class Utilizador {
 		System.out.println("\nOpção 1 --> Entrar na base de dados, com uma conexão já existente");
 		System.out.println("\nOpção 2 --> Criar uma nova conexão");
 		
-		System.out.print("Introduz o valor da opção");
+		System.out.println("\nIntroduz o valor da opção");
 		ler.nextInt();
 
 
