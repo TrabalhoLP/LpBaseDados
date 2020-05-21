@@ -1,5 +1,5 @@
 package programa;
-
+//ainda nao esta terminado
 public class Registo {
 
 	private String [] arrayRegisto;
@@ -16,14 +16,14 @@ public class Registo {
 		this.arrayRegisto = arrayRegisto;
 	}
 	
-	public void adicionarRegisto(String registo) {
+	public void adicionarRegisto(String registo) {// adiciona o registo no arrayResgisto
 			deslocarDireita();
 			arrayRegisto[0]=registo;
 		
 		}
 		
 		
-	private void deslocarDireita() {
+	private void deslocarDireita() {// desloca o array de modo a permitir a insercao de um novo registo
 	String [] novo= new String[arrayRegisto.length+1];
 	int i=1;
 	for(String registo: arrayRegisto) {
