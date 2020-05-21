@@ -1,5 +1,5 @@
 package programa;
-//ainda nao esta terminado
+//ainda nao esta terminado, 
 public class Registo {
 
 	private String [] arrayRegisto;
