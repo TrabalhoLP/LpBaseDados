@@ -50,7 +50,7 @@ public class Registo {
 		for(int i = 1; i < arrayRegisto.length; i++ )
 		{
 			if(i==index) { continue;}// caso encontremos o indice da string que pretendemos remover esse nao vai ser iterado
-			novo[i-1]=arrayRegisto[i];
+			novo[i]=arrayRegisto[i];
 			
 		}
 		arrayRegisto = novo;
