@@ -36,5 +36,10 @@ public class NoTabela {
 		return this.contaRegisto;
 	}
 
+	public void registo() {
+		
+		registos[contaRegisto]= new Registo(colunas.length);
+		contaRegisto++;
+	}
 	
 }

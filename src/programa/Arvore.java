@@ -22,4 +22,8 @@ public class Arvore {
 		contaTabelas++;
 		System.out.println("Tabela <"+ nome + "> Criada com sucesso ");
 	}
+	
+	public NoTabela getTabela() {
+		return tabelas[0];
+	}
 }
