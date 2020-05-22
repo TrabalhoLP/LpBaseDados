@@ -4,8 +4,8 @@ public class Registo {
 
 	private String [] arrayRegisto;
 	
-	public Registo(int tamanho) {
-		arrayRegisto= new String [tamanho];
+	public Registo() {
+		arrayRegisto= new String [] {};
 	}
 
 	public String[] getArrayRegisto() {
