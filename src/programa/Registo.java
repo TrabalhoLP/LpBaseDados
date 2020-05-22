@@ -47,10 +47,12 @@ public class Registo {
 	private void deslocarEsquerda(int index)
 	{
 		String[] novo = new String[arrayRegisto.length - 1];
-		for(int i = 1; i < arrayRegisto.length; i++ )
+		for(int i = 0; i < arrayRegisto.length-1; i++ )
 		{
-			if(i==index) { continue;}// caso encontremos o indice da string que pretendemos remover esse nao vai ser iterado
-			novo[i]=arrayRegisto[i];
+			if(i==index) {
+				novo[i]=arrayRegisto[i+1];
+			}// caso encontremos o indice da string que pretendemos remover esse nao vai ser iterado
+			
 			
 		}
 		arrayRegisto = novo;
