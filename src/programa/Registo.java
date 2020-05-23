@@ -49,9 +49,13 @@ public class Registo {
 		String[] novo = new String[arrayRegisto.length - 1];
 		for(int i = 0; i < arrayRegisto.length-1; i++ )
 		{
-			if(i==index) {
+				
+			if(i>=index) {// se i for igual ao index, como e esse que pretendemos remover vamos dizer quue vai ser igual ao proximo elemento do arrayRegisto
+							// sendo que temos de fazer isto para todos os elementos que se encontrem nos indices posteriores ao index
 				novo[i]=arrayRegisto[i+1];
-			}// caso encontremos o indice da string que pretendemos remover esse nao vai ser iterado
+			}else {
+				novo[i]=arrayRegisto[i]; 
+			}
 			
 			
 		}
