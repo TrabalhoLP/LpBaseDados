@@ -16,6 +16,7 @@ public class NoTabela {
 		 * e o numero de colunas(campos) que a tabela tem
 		 * Este NumColunas, serve para criar uma lista String colunas
 		 * Para que o utilizador depois diga o nome de cada campo */
+		this.registos= new Registo [10];// depois temos de alterar este tipo de lista
 	}
 
 	public String getNome() {
