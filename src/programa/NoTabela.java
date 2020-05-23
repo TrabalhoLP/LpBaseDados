@@ -1,8 +1,10 @@
 package programa;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class NoTabela {
-	
+	private Scanner ler = new Scanner(System.in);
+
 	private String nome;
 	
 	private ArrayList <Registo> registos;
@@ -11,13 +13,15 @@ public class NoTabela {
 	
 	public NoTabela(String nome, int numColunas) {
 		this.nome = nome;
-		this.colunas = new String [numColunas]; 
+		this.colunas = new String [numColunas];
 		this.contaRegisto = 0;
 		/* este contrutor recebe o nome da tabela 
 		 * e o numero de colunas(campos) que a tabela tem
 		 * Este NumColunas, serve para criar uma lista String colunas
 		 * Para que o utilizador depois diga o nome de cada campo */
 		this.registos= new ArrayList();// depois temos de alterar este tipo de lista
+		
+		preencherNomeColunas();
 	}
 
 	public String getNome() {
@@ -33,9 +37,9 @@ public class NoTabela {
 		return colunas;
 	}
 	
-	public int getRegistos() {
+	public ArrayList getRegistos() {
 		
-		return this.contaRegisto;
+		return this.registos;
 	}
 
 	public void registo() {
@@ -43,5 +47,50 @@ public class NoTabela {
 		registos.add(new Registo(colunas.length));
 		contaRegisto++;
 	}
+	
+	public int procura(String nomeColuna) {
+		
+		// nome da coluna, fazer funcao para converter o nome num indice da coluna;
+		System.out.println("Valor do que procuras?");
+		String valor = ler.next();
+		
+		for (int i = 0; i < registos.size(); i++) {
+			
+			Registo a = registos.get(qualIndice(nomeColuna)); // qual indice encontrou o indice da coluna
+			
+			if(a.getCol(i).compareTo(valor)==0) {
+				System.out.println(a.getCol(i));
+			}else {
+				System.out.println("Não Há");
+			}
+			
+			
+			
+		}
+		return -1;// caso nao seja encontrado nenhum indice
+	}
+	
+	private int qualIndice(String nome) {
+		
+		for (int i = 0; i< colunas.length; i++) {
+			if(colunas[i].compareTo(nome)==0) {
+				return i;
+			}
+		}
+	
+		return -1;
+	}
+	
+	
+	public boolean preencherNomeColunas() {
+		
+		for (int i = 0; i< colunas.length; i++) {
+			System.out.println("Nome da coluna "+ i);
+			colunas[i]= ler.next();
+		}
+		
+		return true;
+	}
+	
 	
 }

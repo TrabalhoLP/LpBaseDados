@@ -19,10 +19,11 @@ public class Registo {
 
 	public void utilizador() {
 		
-		for (int i = 0; i < (arrayRegisto.length); i++) { // ta a dar erro nao entendo
+		for (int i = 0; i < (arrayRegisto.length); i++) { 
 			System.out.println("Introduz o valor para "+i);
 			arrayRegisto[i]= ler.next();
 		}
+		
 	}
 
 	public String[] getArrayRegisto() {
@@ -43,7 +44,7 @@ public class Registo {
 		if (arrayRegisto.length == 0) {// se nao houver nada dentro do array nao podemos remover nada
 			return;
 		} else {
-			int index = aRetirar(registo);
+			int index = procura(registo);
 			if (index != -1) {// se encontramos o indice
 				deslocarEsquerda(index);// reescrevemos o array sem essa string
 			}
@@ -53,7 +54,7 @@ public class Registo {
 		}
 	}
 
-	private int aRetirar(String sair) {
+	private int procura(String sair) {
 		for (int i = 0; i < arrayRegisto.length; i++) {
 			if (arrayRegisto[i].equalsIgnoreCase(sair)) {// vai descobrir dentro do array a que indice corresponde a
 															// string que queremos retirar
@@ -89,6 +90,13 @@ public class Registo {
 			i++;
 		}
 		arrayRegisto = novo;
+	}
+	
+	//update no registo, procurar a posição do registo no array e alterar para o valor introduzido
+	
+	// Procura
+	public String getCol(int a) {
+		return arrayRegisto[a];
 	}
 
 }

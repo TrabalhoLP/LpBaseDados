@@ -13,6 +13,7 @@ public class Main {
 		
 		escola.criaTabela("Alunos", 2);
 		escola.getTabela().registo();
+		escola.getTabela().procura("Nome");
 	}
 
 }

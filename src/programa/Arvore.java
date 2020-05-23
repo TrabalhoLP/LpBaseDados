@@ -26,4 +26,9 @@ public class Arvore {
 	public NoTabela getTabela() {
 		return tabelas[0];
 	}
+	
+	//remover tabela //tem de se ver se tem coisas ou não;
+	
+	
 }
+
