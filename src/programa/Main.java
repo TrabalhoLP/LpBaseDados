@@ -12,7 +12,7 @@ public class Main {
 		Arvore escola = new Arvore("Escola");
 		
 		escola.criaTabela("Alunos", 2);
-		
+		escola.getTabela().registo();
 	}
 
 }
