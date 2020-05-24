@@ -58,10 +58,10 @@ public class NoTabela {
 			
 			Registo a = registos.get(qualIndice(nomeColuna)); // qual indice encontrou o indice da coluna
 			
-			if(a.getCol(i).compareTo(valor)==0) {
-				System.out.println(a.getCol(i));
+			if(a.getCol(i).compareTo(valor)==0) {//se encontrarmos a coluna
+				System.out.println(a.getCol(i));//faz-se print da coluna encontrada
 			}else {
-				System.out.println("Não Há");
+				System.out.println("Não Há");// essa coluna nao existe
 			}
 			
 			
@@ -73,7 +73,8 @@ public class NoTabela {
 	private int qualIndice(String nome) {
 		
 		for (int i = 0; i< colunas.length; i++) {
-			if(colunas[i].compareTo(nome)==0) {
+			if(colunas[i].compareTo(nome)==0) {// compara o nome da coluna introduzido com o nome das colunas que existe
+													// caso a encontre retorna o seu indice
 				return i;
 			}
 		}
@@ -82,7 +83,7 @@ public class NoTabela {
 	}
 	
 	
-	public boolean preencherNomeColunas() {
+	public boolean preencherNomeColunas() {// atribuir nomes as colunas de uma tabela
 		
 		for (int i = 0; i< colunas.length; i++) {
 			System.out.println("Nome da coluna "+ i);

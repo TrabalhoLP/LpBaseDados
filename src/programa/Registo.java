@@ -17,7 +17,7 @@ public class Registo {
 		utilizador();
 	}
 
-	public void utilizador() {
+	public void utilizador() {// para introduzir registos numa tabela
 		
 		for (int i = 0; i < (arrayRegisto.length); i++) { 
 			System.out.println("Introduz o valor para "+i);
@@ -71,7 +71,7 @@ public class Registo {
 		for(int i = 0; i < arrayRegisto.length-1; i++ )
 		{
 				
-			if(i>=index) {// se i for igual ao index, como e esse que pretendemos remover vamos dizer quue vai ser igual ao proximo elemento do arrayRegisto
+			if(i>=index) {// se i for igual ao index, como e esse que pretendemos remover vamos dizer que vai ser igual ao proximo elemento do arrayRegisto
 							// sendo que temos de fazer isto para todos os elementos que se encontrem nos indices posteriores ao index
 				novo[i]=arrayRegisto[i+1];
 			}else {
@@ -82,7 +82,7 @@ public class Registo {
 		arrayRegisto = novo;
 	}
 
-	private void deslocarDireita() {// desloca o array de modo a permitir a insercao de um novo registo
+	private void deslocarDireita() {// permite a insercao dos registos, ver se e necessaria
 		String[] novo = new String[arrayRegisto.length + 1];
 		int i = 1;
 		for (String registo : arrayRegisto) {
@@ -92,7 +92,7 @@ public class Registo {
 		arrayRegisto = novo;
 	}
 	
-	//update no registo, procurar a posição do registo no array e alterar para o valor introduzido
+	//update no registo, procurar a posicao do registo no array e alterar para o valor introduzido
 	
 	// Procura
 	public String getCol(int a) {
