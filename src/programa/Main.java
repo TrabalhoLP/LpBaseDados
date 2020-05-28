@@ -7,13 +7,14 @@ public class Main {
 		
 		Utilizador programa = new Utilizador();
 		
-		//programa.iniciar();
+		programa.iniciar();
 		
 		Arvore escola = new Arvore("Escola");
 		
 		escola.criaTabela("Alunos", 2);
 		escola.getTabela().registo();
 		escola.getTabela().procura("Nome");
+		
 	}
 
 }
