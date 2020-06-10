@@ -6,8 +6,7 @@ public class Utilizador {
 	
 
 	private Scanner ler = new Scanner(System.in);
-	private ArrayList<String> usernames= new ArrayList<String>();
-	private ArrayList<String> passwords= new ArrayList<String>();
+	private ArrayList<User> users = new ArrayList<User>();
 	// substuir isto pela classe user. ou seja depois temos um array de objectos user
 
 	public Utilizador() {
@@ -17,30 +16,26 @@ public class Utilizador {
 	
 	// Há um utilizador no array? temos de criar um user
 	
+
 	
-	public void Utilizador() {
-		this.usernames= new ArrayList<String>();
-		this.passwords=new ArrayList<String>();
-	}
-	
-	public String procurarUsername(String username) {// procurar username no arraylist onde se encontram os usernames
-		for(int i=0;i<usernames.size();i++) {
-			if(username==usernames.get(i)) {
-				return "Username correto";
-			}
-				
+	public String procurarUsername(String username, String password) {// procurar username no arraylist onde se encontram os usernames
+		for(int i=0;i<users.size();i++) {
+			if(username.compareTo(users.get(i).getUsername())==0) {
+				if(verificaPassword(users.get(i), password)) {
+					return "Bem vindo/a " + users.get(i).getUsername();
+				}
+			}		
 		}
-		return "Username nao encontrado";
+		return "Username nao encontrado ou palavra pass incorreta";
 	}
-	public String procurarPassword(String password) {// procurar password no arraylist onde se encontra a password
-		for(int i=0;i<passwords.size();i++) {
-			if(password==passwords.get(i)) {
-				return "Password correta";
-			}
-				
-		}
-		return "Password nao encontrada";
+
+
+	private boolean verificaPassword(User user, String pass) {
+		
+		return user.getPassword().compareTo(pass)==0;
 	}
+
+
 	public void iniciar() {
 		
 		int opcao=0;
@@ -52,42 +47,36 @@ public class Utilizador {
 		System.out.println("\nIntroduz o valor da opção");
 		opcao=ler.nextInt();
 		
-		if(opcao==1) {// quando vou a ver o arraylist nao tem nada, mesmo ja tendo adicionado
+		if(opcao==1) {
+			// introduz a password
 			System.out.println("Username:");
 			String username= ler.next();
-			procurarUsername(username);
 			System.out.println("Password");
 			String password= ler.next();
-			procurarPassword(password);
-			System.out.println(usernames);
-			System.out.println(passwords);
-		if(procurarUsername(username).compareTo("Username correto")==0 && procurarPassword(password).compareTo("Password correta")==0 ){
-			System.out.println("Bem vindo � base de dados");
-		}else if (procurarUsername(username).compareTo("Username correto")==0 && procurarPassword(password).compareTo("Password correta")!=0 ) {
-			System.out.println("Password Incorreta");
-			return;
-		}else if(procurarUsername(username).compareTo("Username correto")!=0 && procurarPassword(password).compareTo("Password correta")==0 ) {
-			System.out.println("Username Incorreto");
-			return;
-		}else {
-			System.out.println("Username e password incorretos");
-			return;
+			System.out.println(procurarUsername(username, password));
+			
 		}
-		}
-		if(opcao==2) {// consegue adicionar 
+		
+		if(opcao==2) {// criar novo utilizador
+			
 			System.out.println("Introduza um username:");
 			String novoUsername= ler.next();
-			usernames.add(novoUsername);
-			System.out.println(usernames);
 			System.out.println("Introduza um password");
 			String novaPassword=ler.next();
-			passwords.add(novaPassword);
-			System.out.println("Registo efetuado com sucesso");
-			System.out.println(usernames.toString());
-			System.out.println(passwords.toString());
+			User novo = new User(novoUsername, novaPassword);
+			users.add(novo);
 
-			return;
+			System.out.println("Registo efetuado com sucesso");
+			System.out.println(users.toString());
+
+			iniciar();
 		}
 
-}
+	}
+	
+	// este é o novo menu depois da palavra pass
+	public void menuUtilizador() {
+		
+		
+	}
 }
