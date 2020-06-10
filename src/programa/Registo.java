@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Registo {
 
 	private Scanner ler = new Scanner(System.in);
-
+	private int id; // timestamp hashed para criar um id que mais ninguem tem
 	private String[] arrayRegisto;
 	
 

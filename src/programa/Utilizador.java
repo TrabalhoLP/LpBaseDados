@@ -8,12 +8,14 @@ public class Utilizador {
 	private Scanner ler = new Scanner(System.in);
 	private ArrayList<String> usernames= new ArrayList<String>();
 	private ArrayList<String> passwords= new ArrayList<String>();
+	// substuir isto pela classe user. ou seja depois temos um array de objectos user
 
 	public Utilizador() {
 		
 	}
 	
 	
+	// Há um utilizador no array? temos de criar um user
 	
 	
 	public void Utilizador() {
@@ -28,7 +30,7 @@ public class Utilizador {
 			}
 				
 		}
-		return "Username n�o encontrado";
+		return "Username nao encontrado";
 	}
 	public String procurarPassword(String password) {// procurar password no arraylist onde se encontra a password
 		for(int i=0;i<passwords.size();i++) {
@@ -37,7 +39,7 @@ public class Utilizador {
 			}
 				
 		}
-		return "Password n�o encontrada";
+		return "Password nao encontrada";
 	}
 	public void iniciar() {
 		
@@ -45,7 +47,7 @@ public class Utilizador {
 		
 		System.out.println("Olá Bem vindo á base dados alternativa");
 		System.out.println("\nOpção 1 --> Entrar na base de dados, com uma conexão já existente");
-		System.out.println("\nOpção 2 --> Criar uma nova conexão");
+		System.out.println("\nOpção 2 --> Criar um utilizador");
 		
 		System.out.println("\nIntroduz o valor da opção");
 		opcao=ler.nextInt();
@@ -60,7 +62,7 @@ public class Utilizador {
 			System.out.println(usernames);
 			System.out.println(passwords);
 		if(procurarUsername(username).compareTo("Username correto")==0 && procurarPassword(password).compareTo("Password correta")==0 ){
-			System.out.println("Bem vindo � base de dados");
+			System.out.println("Bem vindo � base de dados");
 		}else if (procurarUsername(username).compareTo("Username correto")==0 && procurarPassword(password).compareTo("Password correta")!=0 ) {
 			System.out.println("Password Incorreta");
 			return;
@@ -81,6 +83,9 @@ public class Utilizador {
 			String novaPassword=ler.next();
 			passwords.add(novaPassword);
 			System.out.println("Registo efetuado com sucesso");
+			System.out.println(usernames.toString());
+			System.out.println(passwords.toString());
+
 			return;
 		}
 
