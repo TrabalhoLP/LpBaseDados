@@ -9,11 +9,11 @@ public class NoTabela {
 	
 	private ArrayList <Registo> registos;
 	private int contaRegisto;
-	private String [] colunas;
+	private ArrayList info;
 	
 	public NoTabela(String nome, int numColunas) {
 		this.nome = nome;
-		this.colunas = new String [numColunas];
+		this.info = new ArrayList();
 		this.contaRegisto = 0;
 		/* este contrutor recebe o nome da tabela 
 		 * e o numero de colunas(campos) que a tabela tem
@@ -21,7 +21,6 @@ public class NoTabela {
 		 * Para que o utilizador depois diga o nome de cada campo */
 		this.registos= new ArrayList();// depois temos de alterar este tipo de lista
 		
-		preencherNomeColunas();
 	}
 
 	public String getNome() {
@@ -32,9 +31,9 @@ public class NoTabela {
 		this.nome = nome;
 	}
 
-	public String[] getColunas() {
+	public ArrayList getColunas() {
 		
-		return colunas;
+		return info;
 	}
 	
 	public ArrayList getRegistos() {
@@ -44,10 +43,10 @@ public class NoTabela {
 
 	public void registo() {
 		
-		registos.add(new Registo(colunas.length));
+		registos.add(new Registo(info.size()));
 		contaRegisto++;
 	}
-	
+	/*
 	public int procura(String nomeColuna) {
 		
 		// nome da coluna, fazer funcao para converter o nome num indice da coluna;
@@ -70,10 +69,11 @@ public class NoTabela {
 		return -1;// caso nao seja encontrado nenhum indice
 	}
 	
+	
 	private int qualIndice(String nome) {
 		
-		for (int i = 0; i< colunas.length; i++) {
-			if(colunas[i].compareTo(nome)==0) {// compara o nome da coluna introduzido com o nome das colunas que existe
+		for (int i = 0; i< info.size(); i++) {
+			if(info.get(i).compareTo(nome)==0) {// compara o nome da coluna introduzido com o nome das colunas que existe
 													// caso a encontre retorna o seu indice
 				return i;
 			}
@@ -92,6 +92,6 @@ public class NoTabela {
 		
 		return true;
 	}
-	
+	*/
 	
 }

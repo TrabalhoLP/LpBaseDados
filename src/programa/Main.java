@@ -9,11 +9,11 @@ public class Main {
 		
 		programa.iniciar();
 		
-		Arvore escola = new Arvore("Escola");
+		Arvore escola = new Arvore("Escola1");
 		
 		escola.criaTabela("Alunos", 2);
 		escola.getTabela().registo();
-		escola.getTabela().procura("Nome");
+		
 		
 	}
 
