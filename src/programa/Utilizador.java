@@ -1,7 +1,7 @@
 package programa;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.util.*;
 public class Utilizador {
 	
 
@@ -100,7 +100,8 @@ public class Utilizador {
 		else if(query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
 			
 		}else if(query.compareTo("CRIAR REGISTO")==0) {
-			
+		
+			criaRegisto();
 		}
 		
 		
@@ -111,8 +112,22 @@ public class Utilizador {
 	}
 
 
+	private void criaRegisto() {
+		
+		
+		ArrayList <Registo> registos= new ArrayList();
+		int contaRegisto=0;
+		registos.add(new Registo());
+		contaRegisto++;
+		//Arvore escola = new Arvore("Escola");
+		//escola.criaTabela("Alunos", 2);
+		//escola.getTabela().registo();
+		
+	}
+
+
 	private void consultarRegistos() {
-		System.out.println("Qual o id do registo a consultar");
+		
 		
 	}
 }

@@ -23,6 +23,10 @@ public class NoTabela {
 		
 	}
 
+	public void setRegistos(ArrayList<Registo> registos) {
+		this.registos = registos;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -36,14 +40,13 @@ public class NoTabela {
 		return info;
 	}
 	
-	public ArrayList getRegistos() {
-		
+/*	public ArrayList getRegistos() {
 		return this.registos;
-	}
+	}*/
 
 	public void registo() {
 		
-		registos.add(new Registo(info.size()));
+		registos.add(new Registo());
 		contaRegisto++;
 	}
 	/*

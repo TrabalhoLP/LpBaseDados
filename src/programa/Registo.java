@@ -1,47 +1,51 @@
 package programa;
 
 import java.util.Scanner;
-
+import java.util.UUID;
+import java.util.ArrayList;
 //ainda nao esta terminado, 
 public class Registo {
 
 	private Scanner ler = new Scanner(System.in);
 	private int id; // timestamp hashed para criar um id que mais ninguem tem
-	private String[] arrayRegisto;
+	private ArrayList arrayRegisto;
 	
 
+	
+	
+	
+	public Registo() {
 
-	public Registo(int numColunas) {
-
-		arrayRegisto = new String[numColunas];
+		arrayRegisto = new ArrayList();
 		utilizador();
 	}
 
 	public void utilizador() {// para introduzir registos numa tabela
 		
-		for (int i = 0; i < (arrayRegisto.length); i++) { 
+		for (int i = 0; i < (arrayRegisto.size()); i++) { 
 			System.out.println("Introduz o valor para "+i);
-			arrayRegisto[i]= ler.next();
+			arrayRegisto.get(i);
 		}
 		
 	}
 
-	public String[] getArrayRegisto() {
+	public ArrayList getArrayRegisto() {
 		return arrayRegisto;
 	}
 
-	public void setArrayRegisto(String[] arrayRegisto) {
+	public void setArrayRegisto(ArrayList arrayRegisto) {
 		this.arrayRegisto = arrayRegisto;
 	}
 
-	public void adicionarRegisto(String registo) {// adiciona o registo no arrayResgisto
+/*	public void adicionarRegisto(String registo) {// adiciona o registo no arrayResgisto
 		deslocarDireita();
-		arrayRegisto[0] = registo;
+		
+		arrayRegisto.get(i)= registo;
 
-	}
+	}*/
 
 	public void eliminarRegisto(String registo) {
-		if (arrayRegisto.length == 0) {// se nao houver nada dentro do array nao podemos remover nada
+		if (arrayRegisto.size() == 0) {// se nao houver nada dentro do array nao podemos remover nada
 			return;
 		} else {
 			int index = procura(registo);
@@ -55,8 +59,8 @@ public class Registo {
 	}
 
 	private int procura(String sair) {
-		for (int i = 0; i < arrayRegisto.length; i++) {
-			if (arrayRegisto[i].equalsIgnoreCase(sair)) {// vai descobrir dentro do array a que indice corresponde a
+		for (int i = 0; i < arrayRegisto.size(); i++) {
+			if ((arrayRegisto.get(i))==sair) {// vai descobrir dentro do array a que indice corresponde a
 															// string que queremos retirar
 				return i;// caso encontremos uma correspondencia dentro do array retorna o indice onde
 							// essa string se encontra dentro do array
@@ -67,15 +71,17 @@ public class Registo {
 	}
 
 	private void deslocarEsquerda(int index) {
-		String[] novo = new String[arrayRegisto.length + 1];
-		for(int i = 0; i < arrayRegisto.length-1; i++ )
+		ArrayList novo = new ArrayList();
+		for(int i = 0; i < arrayRegisto.size()-1; i++ )
 		{
 				
 			if(i>=index) {// se i for igual ao index, como e esse que pretendemos remover vamos dizer que vai ser igual ao proximo elemento do arrayRegisto
 							// sendo que temos de fazer isto para todos os elementos que se encontrem nos indices posteriores ao index
-				novo[i]=arrayRegisto[i+1];
+				
+				novo.set(i, arrayRegisto.get(i+1));
 			}else {
-				novo[i]=arrayRegisto[i]; 
+				
+				novo.set(i, arrayRegisto.get(i));
 			}
 			
 			}
@@ -83,10 +89,10 @@ public class Registo {
 	}
 
 	private void deslocarDireita() {// permite a insercao dos registos, ver se e necessaria
-		String[] novo = new String[arrayRegisto.length + 1];
+		ArrayList novo = new ArrayList(arrayRegisto.size() + 1);
 		int i = 1;
-		for (String registo : arrayRegisto) {
-			novo[i] = registo;
+		for (Object registo : arrayRegisto) {
+			novo.set(i, registo);
 			i++;
 		}
 		arrayRegisto = novo;
@@ -95,8 +101,8 @@ public class Registo {
 	//update no registo, procurar a posicao do registo no array e alterar para o valor introduzido
 	
 	// Procura
-	public String getCol(int a) {
-		return arrayRegisto[a];
+	public Object getCol(int a) {
+		return arrayRegisto.get(a);
 	}
 
 }
