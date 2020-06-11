@@ -76,7 +76,31 @@ public class Utilizador {
 	
 	// este Ã© o novo menu depois da palavra pass
 	public void menuUtilizador() {
+		int opcao;
+		System.out.println("------------------Menu do utilizador-----------------------");
+		System.out.println("1: Obter registos");
+		opcao=ler.nextInt();
+		if(opcao==1) {
+			obterRegistos();
+		}
 		
 		
+	}
+
+
+	private void obterRegistos() {// caso seja selecionada a primeira opcao
+		String query;
+		System.out.println("COMANDOS POSSIVEIS: CONSULTAR REGISTO");
+		System.out.println("\t ELIMINAR REGISTO");
+		query=ler.next();
+		if(query.compareTo("CONSULTAR REGISTO")==0) {// o que fazer no caso da escrita deste comando
+			
+		}
+		else if(query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
+			
+		}else {// caso o comando seja escrito de forma incorreta
+			System.out.print("Comando escrito de forma incorreta ou não existente");
+			obterRegistos();
+		}
 	}
 }
