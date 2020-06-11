@@ -92,15 +92,27 @@ public class Utilizador {
 		String query;
 		System.out.println("COMANDOS POSSIVEIS: CONSULTAR REGISTO");
 		System.out.println("\t ELIMINAR REGISTO");
+		System.out.println("\t CRIAR REGISTO");
 		query=ler.next();
 		if(query.compareTo("CONSULTAR REGISTO")==0) {// o que fazer no caso da escrita deste comando
-			
+			consultarRegistos();
 		}
 		else if(query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
 			
-		}else {// caso o comando seja escrito de forma incorreta
+		}else if(query.compareTo("CRIAR REGISTO")==0) {
+			
+		}
+		
+		
+		else {// caso o comando seja escrito de forma incorreta
 			System.out.print("Comando escrito de forma incorreta ou não existente");
 			obterRegistos();
 		}
+	}
+
+
+	private void consultarRegistos() {
+		System.out.println("Qual o id do registo a consultar");
+		
 	}
 }
