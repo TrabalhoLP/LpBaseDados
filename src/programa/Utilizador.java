@@ -200,6 +200,9 @@ public class Utilizador {
 		}else if(query.compareTo("CRIAR TABELA")==0) {
 			criaTabela();
 		
+		}else if(query.compareTo("CONSULTAR TABELA")==0) {
+			consultaTabela();
+		
 		}else if(query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
 			
 		}else if(query.compareTo("CRIAR REGISTO")==0) {
@@ -225,6 +228,8 @@ public class Utilizador {
 		NoTabela tabela = arvore.getTabela(); // depois vai ter de receber parametros
 		
 		tabela.registo();
+		menuUtilizador();
+
 		
 	}
 	
@@ -236,6 +241,10 @@ public class Utilizador {
 	
 		arvore.criaTabela(nomeTabela);//dar nome a tabela
 		menuUtilizador();
+	}
+	
+	public void consultaTabela() {
+		arvore.consultaTabela();
 	}
 
 

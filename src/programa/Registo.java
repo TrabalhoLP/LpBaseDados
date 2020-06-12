@@ -11,9 +11,6 @@ public class Registo {
 	private ArrayList arrayRegisto;
 	
 
-	
-	
-	
 	public Registo() {
 
 		arrayRegisto = new ArrayList();
@@ -110,5 +107,12 @@ public class Registo {
 	public Object getCol(int a) {
 		return arrayRegisto.get(a);
 	}
+
+	@Override
+	public String toString() {
+		return "Registo [ler=" + ler + ", id=" + id + ", arrayRegisto=" + arrayRegisto.toString() + "]";
+	}
+	
+	
 
 }

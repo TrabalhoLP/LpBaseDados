@@ -29,6 +29,9 @@ public class Arvore {
 		return tabelas.get(0);
 	}
 	
+	public void consultaTabela() {
+		System.out.println(tabelas.get(0).toString());
+	}
 	//remover tabela //tem de se ver se tem coisas ou não;
 	
 	

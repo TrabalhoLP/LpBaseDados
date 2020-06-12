@@ -96,5 +96,13 @@ public class NoTabela {
 		return true;
 	}
 	*/
+
+	@Override
+	public String toString() {
+		return "NoTabela [nome=" + nome + ", registos=" + registos.toString() + ", contaRegisto=" + contaRegisto
+				+ ", info=" + info + "]";
+	}
+	
+	
 	
 }
