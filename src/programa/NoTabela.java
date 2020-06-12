@@ -11,7 +11,7 @@ public class NoTabela {
 	private int contaRegisto;
 	private ArrayList info;
 	
-	public NoTabela(String nome, int numColunas) {
+	public NoTabela(String nome) {
 		this.nome = nome;
 		this.info = new ArrayList();
 		this.contaRegisto = 0;

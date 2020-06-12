@@ -14,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 public class Utilizador {
 	
+	private Arvore arvore = new Arvore();
+
 
 	private Scanner ler = new Scanner(System.in);
 	private ArrayList<User> users = new ArrayList<User>();
@@ -73,7 +75,7 @@ public class Utilizador {
 		if(opcao==1) {
 			// introduz a password
 			System.out.println(users);
-			readData(users);
+		//	readData(users);
 			menuUtilizador();
 			
 			
@@ -98,16 +100,16 @@ public class Utilizador {
       FileReader arq = new FileReader("userspass.txt");
       BufferedReader lerArq = new BufferedReader(arq);
  
-      String linha = lerArq.readLine(); // lê a primeira linha
-// a variável "linha" recebe o valor "null" quando o processo
-// de repetição atingir o final do arquivo texto
+      String linha = lerArq.readLine(); // lï¿½ a primeira linha
+// a variï¿½vel "linha" recebe o valor "null" quando o processo
+// de repetiï¿½ï¿½o atingir o final do arquivo texto
       while (linha != null) {
     	
     	System.out.printf("%s\n", linha);
     /*	if(linha.compareTo(procurarUsername(username, password))==0) {
     		return "Username e Password corretos";
     	};*/
-        linha = lerArq.readLine(); // lê da segunda até a última linha
+        linha = lerArq.readLine(); // lï¿½ da segunda atï¿½ a ï¿½ltima linha
       
       }
       arq.close();
@@ -186,23 +188,28 @@ public class Utilizador {
 		System.out.println("2-Voltar ao Menu do Utilizador");
 		opcao=ler.nextInt();
 		if(opcao==1) {
-		System.out.println("1-COMANDOS POSSIVEIS: CONSULTAR REGISTO");
-		System.out.println("\t ELIMINAR REGISTO");
-		System.out.println("\t CRIAR REGISTO");
-		query=ler.next();
-		if(query.equals("CONSULTAR REGISTO")) {// o que fazer no caso da escrita deste comando
+		System.out.println("1-COMANDOS POSSIVEIS: \nCRIAR TABELA \nCONSULTAR REGISTO \nELIMINAR REGISTO \nCRIAR REGISTO");
+
+		ler.nextLine();
+		
+		query=ler.nextLine();
+		
+		System.out.println(query);
+		if(query.compareTo("CONSULTAR REGISTO")==0) {// o que fazer no caso da escrita deste comando
 			consultarRegistos();
-		}
-		else if(query.contentEquals("ELIMINAR REGISTO")) { // o que fazer no caso da escrita deste comando
+		}else if(query.compareTo("CRIAR TABELA")==0) {
+			criaTabela();
+		
+		}else if(query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
 			
-		}else if(query.contentEquals("CRIAR REGISTO")) {
+		}else if(query.compareTo("CRIAR REGISTO")==0) {
 		
 			criaRegisto();
 		}
 		
 		
 		else {// caso o comando seja escrito de forma incorreta
-			System.out.print("Comando escrito de forma incorreta ou não existente");
+			System.out.print("Comando escrito de forma incorreta ou nï¿½o existente");
 			obterRegistos();
 		}
 		}
@@ -214,19 +221,18 @@ public class Utilizador {
 
 
 	private void criaRegisto() {
+	
+		
+	}
+	
+	public void criaTabela() {
 		String nomeTabela;
-		int tamanhoTabela;
-		ArrayList <Registo> registos= new ArrayList();
 		
-		System.out.println("Qual o nome que pretende dar à tabela?");
+		System.out.println("Qual o nome que pretende dar ï¿½ tabela?");
 		nomeTabela=ler.next();
-		System.out.println("Qual o tamanho da tabela que pretende criar?");
-		tamanhoTabela=ler.nextInt();
-		Arvore escola = new Arvore("Escola");
-		escola.criaTabela(nomeTabela, tamanhoTabela);//dar nome a tabela
-		escola.getTabela().registo();//registar tabela
-		obterRegistos();
-		
+	
+		arvore.criaTabela(nomeTabela);//dar nome a tabela
+		menuUtilizador();
 	}
 
 
