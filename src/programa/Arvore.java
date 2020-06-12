@@ -1,11 +1,13 @@
 package programa;
+import java.util.ArrayList;
+
 
 public class Arvore {
 	
 	// conexao
 	
 	private String nome;
-	private NoTabela tabelas[];
+	private ArrayList <NoTabela> tabelas;
 	private int contaTabelas;
 	
 	private User user []; // depois vemos se vale a pena implementar
@@ -13,18 +15,18 @@ public class Arvore {
 	public Arvore () {
 		
 		contaTabelas = 0;
-		tabelas = new NoTabela [10]; //  default para a quantidade de tabelas
+		tabelas = new ArrayList(); //  default para a quantidade de tabelas
 	}
 
 	public void criaTabela(String nome) {
 		
-		tabelas[contaTabelas] = new NoTabela(nome); //cria a tabela, ja na lista de tabelas
+		tabelas.add(new NoTabela(nome)); //cria a tabela, ja na lista de tabelas
 		contaTabelas++;
 		System.out.println("Tabela <"+ nome + "> Criada com sucesso ");
 	}
 	
 	public NoTabela getTabela() {
-		return tabelas[0];
+		return tabelas.get(0);
 	}
 	
 	//remover tabela //tem de se ver se tem coisas ou não;
