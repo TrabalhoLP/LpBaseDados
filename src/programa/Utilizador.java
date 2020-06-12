@@ -203,7 +203,7 @@ public class Utilizador {
 		}else if(query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
 			
 		}else if(query.compareTo("CRIAR REGISTO")==0) {
-		
+			System.out.println("registo");
 			criaRegisto();
 		}
 		
@@ -221,7 +221,10 @@ public class Utilizador {
 
 
 	private void criaRegisto() {
-	
+		
+		NoTabela tabela = arvore.getTabela(); // depois vai ter de receber parametros
+		
+		tabela.registo();
 		
 	}
 	

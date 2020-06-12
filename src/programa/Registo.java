@@ -21,10 +21,16 @@ public class Registo {
 	}
 
 	public void utilizador() {// para introduzir registos numa tabela
+		int a;
+		String valor;
+		System.out.println("Quantos campos vai introduzir");
+		a=ler.nextInt();
 		
-		for (int i = 0; i < (arrayRegisto.size()); i++) { 
+			
+		for (int i = 0; i < a; i++) { 
 			System.out.println("Introduz o valor para "+i);
-			arrayRegisto.get(i);
+			valor = ler.next();
+			arrayRegisto.add(valor);
 		}
 		
 	}
