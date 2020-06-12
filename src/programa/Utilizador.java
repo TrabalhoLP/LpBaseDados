@@ -1,21 +1,23 @@
 package programa;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
+import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import jdk.jshell.spi.ExecutionControl.UserException;
 public class Utilizador {
 	
-	private Arvore arvore = new Arvore();
-
 
 	private Scanner ler = new Scanner(System.in);
 	private ArrayList<User> users = new ArrayList<User>();
@@ -61,7 +63,7 @@ public class Utilizador {
 	}
 
 
-	public void iniciar() {
+	public void iniciar()  {
 		
 		int opcao=0;
 		
@@ -75,7 +77,12 @@ public class Utilizador {
 		if(opcao==1) {
 			// introduz a password
 			System.out.println(users);
-		//	readData(users);
+			try {
+				leitor();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			menuUtilizador();
 			
 			
@@ -83,35 +90,54 @@ public class Utilizador {
 		
 		if(opcao==2) {// criar novo utilizador
 			System.out.println(users);
-			storeData();
+			try {
+				escritor();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 
 	}
 
-	public void readData(ArrayList<User> paraLer) {
+/*	public void readData(ArrayList<User> paraLer) {
 		
     System.out.println("Username:");
 	String username= ler.next();
 	System.out.println("Password");
 	String password= ler.next();
-    
+	User novoUser = new User(username,password);
+	users.add(novoUser);
+
+    Scanner ler = new Scanner(System.in);
+ 
+    String file = "userspass.txt";
+    Path path = Paths.get("\\\\LAPTOP-GK358VHC\\Users\\Cristiana Modesto\\projetoLP\\LpBaseDados\\src\\programa\\pastaficheiros", file);
+    System.out.println(path);
+
+/*	    try {
+		System.out.println(Files.readString(path));
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}*/
+
+//    System.out.printf("Informe o nome de arquivo texto:\n");
+  //  String nome = ler.nextLine();
+ 
+   /* System.out.printf("\nConteúdo do arquivo texto:\n");
     try {
-      FileReader arq = new FileReader("userspass.txt");
+      FileReader arq = new FileReader(path.toFile());
       BufferedReader lerArq = new BufferedReader(arq);
  
-      String linha = lerArq.readLine(); // lï¿½ a primeira linha
-// a variï¿½vel "linha" recebe o valor "null" quando o processo
-// de repetiï¿½ï¿½o atingir o final do arquivo texto
+      String linha = lerArq.readLine(); // lê a primeira linha // a variável "linha" recebe o valor "null" quando o processo	// de repetição atingir o final do arquivo texto
       while (linha != null) {
-    	
-    	System.out.printf("%s\n", linha);
-    /*	if(linha.compareTo(procurarUsername(username, password))==0) {
-    		return "Username e Password corretos";
-    	};*/
-        linha = lerArq.readLine(); // lï¿½ da segunda atï¿½ a ï¿½ltima linha
-      
+        System.out.printf("%s\n", linha);
+ 
+        linha = lerArq.readLine(); // lê da segunda até a última linha
       }
+ 
       arq.close();
     } catch (IOException e) {
         System.err.printf("Erro na abertura do arquivo: %s.\n",
@@ -119,46 +145,239 @@ public class Utilizador {
     }
  
     System.out.println();
+  }*/
+
+   /* try {
+    	String file = "userspass.txt";
+	    Path path = Paths.get("\\\\LAPTOP-GK358VHC\\Users\\Cristiana Modesto\\projetoLP\\LpBaseDados\\src\\programa\\pastaficheiros", file);
+	    System.out.println(path);
+
+	    try {
+			System.out.println(Files.readString(path));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	
-  }
+	    Files.readString(path).compareTo(procurarUsername(username,password));
+ 
+     /* String linha = lerArq.readLine(); // lê a primeira linha
+// a variável "linha" recebe o valor "null" quando o processo
+// de repetição atingir o final do arquivo texto
+      while (linha != null) {
+    	
+    	System.out.printf("%s\n", linha);
+    /*	if(linha.compareTo(procurarUsername(username, password))==0) {
+    		return "Username e Password corretos";
+    	};*/
+     //   linha = lerArq.readLine(); // lê da segunda até a última linha
+  /*    
+      }
+      arq.close();*/
+ 
 	
 	
-	public void storeData() {
-		    String username,password ;
-		    int i;
-		    System.out.printf("Username:\n");
-		    username= ler.next();
-		    
-		    System.out.printf("Password:\n");
-		    password= ler.next();
-		    
-		    inserirNoArrayList(username, password);
-		    
-		    FileWriter	arq = null ;
+  
+	
+	
+	
+	
+/*	public void gravaTxt() throws UserException{
+	  String username,password ;
+	    
+	    System.out.printf("Username:\n");
+	    username= ler.next();
+	    
+	    System.out.printf("Password:\n");
+	    password= ler.next();
+	    java.net.URL url = getClass().getResource("userspass.txt");
+    	File file = new File(url.getPath());
+		
+		User util = new User(username,password);; // só um exemplo, crie todoas as variaveis que são atributos dos objetos do array list
+		String user,pass;
+try	{
+	        FileWriter f = new FileWriter (file, true);
+	 
+	        for(int i = 0; i < users.size(); i++){
+	        	
+	        	util = users.get(i); // chama o atributo do objeto na posição i
+                             user = util.getUsername();
+                             pass=util.getPassword();
+                             String conteudo =user+" "+pass;
+	        	conteudo += "\r\n";
+	        	f.write(conteudo);
+	        	
+	        }
+	        
+	        f.close();
+
+	    }catch (IOException e)  {
+	            e.printStackTrace();
+	    }
+	}
+	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/*	public  void storeData() {
+		 Scanner ler = new Scanner(System.in);
+	    String username,password ;
+	    int i;
+	    System.out.printf("Username:\n");
+	    username= ler.next();
+	    
+	    System.out.printf("Password:\n");
+	    password= ler.next();
+	    inserirNoArrayList(username, password);
+	    String file = "userspass.txt";
+		Path path = Paths.get("\\\\LAPTOP-GK358VHC\\Users\\Cristiana Modesto\\projetoLP\\LpBaseDados\\src\\programa\\pastaficheiros", file);
+	    FileWriter arq=null;
+		try {
+			arq = new FileWriter(path.toFile());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BufferedReader in;
+		
+	     
+	    	  
+	    try {
+	    	in = new BufferedReader(new FileReader(path.toFile()));
+	    	PrintWriter gravarArq = new PrintWriter(arq);
+	    	 while((path.toFile().toString())!=null) {  
+		    gravarArq.println("-----Users/Pass---");
+		    gravarArq.println("Username:"+username);
+		    gravarArq.println("Password:"+password);
+		    gravarArq.println("--------------------");
+		    gravarArq.flush();
+		    gravarArq.close();
+			arq.close();
+			iniciar();
+	    	 }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	 
+	    System.out.println("Registo efetuado com sucesso! ");
+	   
+	  }
+	*/
+	   public  void leitor() throws IOException {
+		   String file = "userspass.txt";
+			Path path = Paths.get("\\\\LAPTOP-GK358VHC\\Users\\Cristiana Modesto\\projetoLP\\LpBaseDados\\src\\programa\\pastaficheiros", file);
+	        BufferedReader buffRead = new BufferedReader(new FileReader(path.toFile()));
+	        String linha = "";
+	        while (true) {
+	            if (linha != null) {
+	                System.out.println(linha);
+	 
+	            } else
+	                break;
+	            linha = buffRead.readLine();
+	        }
+	        buffRead.close();
+	        menuUtilizador();
+	    }
+	   
+	   
+	   
+	   
+	   
+	   public void escritor() throws IOException {
+		   String file = "userspass.txt";
+			Path path = Paths.get("\\\\LAPTOP-GK358VHC\\Users\\Cristiana Modesto\\projetoLP\\LpBaseDados\\src\\programa\\pastaficheiros", file);
+	        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path.toFile()));
+	        String user = "";
+	        String pass="";
+	        Scanner in = new Scanner(System.in);
+	        System.out.println("Username: ");
+	        user = in.nextLine();
+	        System.out.println("Password:");
+	        pass=in.nextLine();
+	        buffWrite.write(user+ "\n");
+	        buffWrite.write(pass+ "\n");
+	        buffWrite.flush();
+	        buffWrite.close();
+	        iniciar();
+	    }
+	
+	
+	
+	
+/*	public  void storeData() {
+		try {
+			String file = "userspass.txt";
+		    Path path = Paths.get("\\\\LAPTOP-GK358VHC\\Users\\Cristiana Modesto\\projetoLP\\LpBaseDados\\src\\programa\\pastaficheiros", file);
+	    	FileWriter o = new FileWriter(path.toFile());
+			
+			String linha;
+			InputStreamReader isr = new InputStreamReader(System.in);
+			BufferedReader in = new BufferedReader(isr);
+			PrintWriter out = new PrintWriter(o);
+			System.out.println("Digite algo no console e tecle enter");
 			try {
-				arq = new FileWriter("userspass.txt");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				while (!(linha = in.readLine()).equals("-1")) {
+					System.out.println("Username: " + linha);
+					System.out.println("Password: " + linha);
+					out.println(linha);
+					out.flush();
+				}
+				// out.flush(); <<<<<<<<
+				in.close();
+				o.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
-		    PrintWriter gravarArq = new PrintWriter(arq);
-		 
-		    gravarArq.printf("-----Users/Pass---");
-		    gravarArq.printf("Username:",username);
-		    gravarArq.printf("Password:",password);
-		    
-		    gravarArq.printf("--------------------");
-		 
-		    try {
-				arq.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		 
-		    System.out.println("Registo efetuado com sucesso! ");
-		    iniciar();
-		  }
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}*/
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 		// este Ã© o novo menu depois da palavra pass
 	
 		
@@ -188,28 +407,23 @@ public class Utilizador {
 		System.out.println("2-Voltar ao Menu do Utilizador");
 		opcao=ler.nextInt();
 		if(opcao==1) {
-		System.out.println("1-COMANDOS POSSIVEIS: \nCRIAR TABELA \nCONSULTAR REGISTO \nELIMINAR REGISTO \nCRIAR REGISTO");
-
-		ler.nextLine();
-		
-		query=ler.nextLine();
-		
-		System.out.println(query);
-		if(query.compareTo("CONSULTAR REGISTO")==0) {// o que fazer no caso da escrita deste comando
+		System.out.println("1-COMANDOS POSSIVEIS: CONSULTAR REGISTO");
+		System.out.println("\t ELIMINAR REGISTO");
+		System.out.println("\t CRIAR REGISTO");
+		query=ler.next();
+		if(query.equals("CONSULTAR REGISTO")) {// o que fazer no caso da escrita deste comando
 			consultarRegistos();
-		}else if(query.compareTo("CRIAR TABELA")==0) {
-			criaTabela();
-		
-		}else if(query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
+		}
+		else if(query.contentEquals("ELIMINAR REGISTO")) { // o que fazer no caso da escrita deste comando
 			
-		}else if(query.compareTo("CRIAR REGISTO")==0) {
-			System.out.println("registo");
-			criaRegisto();
+		}else if(query.contentEquals("CRIAR REGISTO")) {
+		
+		//	criaRegisto();
 		}
 		
 		
 		else {// caso o comando seja escrito de forma incorreta
-			System.out.print("Comando escrito de forma incorreta ou nï¿½o existente");
+			System.out.print("Comando escrito de forma incorreta ou não existente");
 			obterRegistos();
 		}
 		}
@@ -220,23 +434,21 @@ public class Utilizador {
 	}
 
 
-	private void criaRegisto() {
-		
-		NoTabela tabela = arvore.getTabela(); // depois vai ter de receber parametros
-		
-		tabela.registo();
-		
-	}
-	
-	public void criaTabela() {
+/*	private void criaRegisto() {
 		String nomeTabela;
+		int tamanhoTabela;
+		ArrayList <Registo> registos= new ArrayList();
 		
-		System.out.println("Qual o nome que pretende dar ï¿½ tabela?");
+		System.out.println("Qual o nome que pretende dar à tabela?");
 		nomeTabela=ler.next();
-	
-		arvore.criaTabela(nomeTabela);//dar nome a tabela
-		menuUtilizador();
-	}
+		System.out.println("Qual o tamanho da tabela que pretende criar?");
+		tamanhoTabela=ler.nextInt();
+		Arvore escola = new Arvore("Escola");
+		escola.criaTabela(nomeTabela, tamanhoTabela);//dar nome a tabela
+		escola.getTabela().registo();//registar tabela
+		obterRegistos();
+		
+	}*/
 
 
 	private void consultarRegistos() {
