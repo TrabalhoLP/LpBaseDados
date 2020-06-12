@@ -45,6 +45,13 @@ public class Utilizador {
 		return "Username nao encontrado ou palavra pass incorreta";
 	}
 
+	public void inserirNoArrayList(String username, String password) {// procurar username no arraylist onde se encontram os usernames
+		
+			
+			User novoUser = new User(username,password);
+			users.add(novoUser);
+					
+	}
 
 	private boolean verificaPassword(User user, String pass) {
 		
@@ -67,26 +74,20 @@ public class Utilizador {
 			// introduz a password
 			System.out.println(users);
 			readData(users);
-			
-			if(readData(users).equals(null)) {
-				menuUtilizador();
-				
-			}else {
-				iniciar();
-			}
+			menuUtilizador();
 			
 			
 		}
 		
 		if(opcao==2) {// criar novo utilizador
 			System.out.println(users);
-			storeData(users);
-			System.out.println("Registo efetuado com sucesso");
-			iniciar();
+			storeData();
+			
 		}
 
 	}
-	public String readData(ArrayList<User> paraLer) {
+
+	public void readData(ArrayList<User> paraLer) {
 		
     System.out.println("Username:");
 	String username= ler.next();
@@ -94,20 +95,20 @@ public class Utilizador {
 	String password= ler.next();
     
     try {
-      FileReader arq = new FileReader("userpass.txt");
+      FileReader arq = new FileReader("userspass.txt");
       BufferedReader lerArq = new BufferedReader(arq);
  
       String linha = lerArq.readLine(); // lê a primeira linha
 // a variável "linha" recebe o valor "null" quando o processo
 // de repetição atingir o final do arquivo texto
       while (linha != null) {
-    	for(int i=0; i<paraLer.size();i++) {
-    //    System.out.printf("%s\n", linha);
-    	if(linha.compareTo(procurarUsername(username, password))==0) {
+    	
+    	System.out.printf("%s\n", linha);
+    /*	if(linha.compareTo(procurarUsername(username, password))==0) {
     		return "Username e Password corretos";
-    	};
+    	};*/
         linha = lerArq.readLine(); // lê da segunda até a última linha
-      }
+      
       }
       arq.close();
     } catch (IOException e) {
@@ -116,23 +117,11 @@ public class Utilizador {
     }
  
     System.out.println();
-	return null;
+	
   }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-			
-		public void storeData(ArrayList<User> paraGravar) {
+	public void storeData() {
 		    String username,password ;
 		    int i;
 		    System.out.printf("Username:\n");
@@ -140,7 +129,9 @@ public class Utilizador {
 		    
 		    System.out.printf("Password:\n");
 		    password= ler.next();
-		 
+		    
+		    inserirNoArrayList(username, password);
+		    
 		    FileWriter	arq = null ;
 			try {
 				arq = new FileWriter("userspass.txt");
@@ -151,10 +142,10 @@ public class Utilizador {
 		    PrintWriter gravarArq = new PrintWriter(arq);
 		 
 		    gravarArq.printf("-----Users/Pass---");
-		    for (i=1; i<=10; i++) {
-		      gravarArq.printf("Username/Password",username,password);
-		    }
-		    gravarArq.printf("+-----------------");
+		    gravarArq.printf("Username:",username);
+		    gravarArq.printf("Password:",password);
+		    
+		    gravarArq.printf("--------------------");
 		 
 		    try {
 				arq.close();
@@ -167,7 +158,11 @@ public class Utilizador {
 		    iniciar();
 		  }
 		// este Ã© o novo menu depois da palavra pass
-	public void menuUtilizador() {
+	
+		
+		
+		
+		public void menuUtilizador() {
 		int opcao;
 		System.out.println("------------------Menu do utilizador-----------------------");
 		System.out.println("1: Manipular registos");
