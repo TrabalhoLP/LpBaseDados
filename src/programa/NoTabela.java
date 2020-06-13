@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NoTabela {
-	private Scanner ler = new Scanner(System.in);
 
 	private String nome;
 	

@@ -1,11 +1,15 @@
 package programa;
 
-public class Arvore {
+import java.io.*;
+import java.util.ArrayList;
+
+public class Arvore implements Serializable{
 	
 	// conexao
 	
+	private static final long serialVersionUID = 1L;
 	private String nome;
-	private NoTabela tabelas[];
+	private ArrayList <NoTabela> tabelas;
 	private int contaTabelas;
 	
 	private User user []; // depois vemos se vale a pena implementar
@@ -13,18 +17,18 @@ public class Arvore {
 	public Arvore () {
 		
 		contaTabelas = 0;
-		tabelas = new NoTabela [10]; //  default para a quantidade de tabelas
+		tabelas = new ArrayList(); //  default para a quantidade de tabelas
 	}
 
 	public void criaTabela(String nome) {
 		
-		tabelas[contaTabelas] = new NoTabela(nome); //cria a tabela, ja na lista de tabelas
+		tabelas.add(new NoTabela(nome)); //cria a tabela, ja na lista de tabelas
 		contaTabelas++;
 		System.out.println("Tabela <"+ nome + "> Criada com sucesso ");
 	}
 	
 	public NoTabela getTabela() {
-		return tabelas[0];
+		return tabelas.get(0);// temos de mudar isto para encontrar a tabela pelo o nome
 	}
 	
 	//remover tabela //tem de se ver se tem coisas ou não;
