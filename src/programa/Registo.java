@@ -126,9 +126,7 @@ public class Registo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Registo [id=" + id + ", arrayRegisto=" + arrayRegisto + ", nome=" + nome  + ", getArrayRegisto()=" + getArrayRegisto() + ", getNome()="
-				+ getNome() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "Registo [id=" + id + ", arrayRegisto=" + arrayRegisto.toString() + ", nome=" + nome  + "]";
 	}
 
 

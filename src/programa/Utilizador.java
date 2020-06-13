@@ -130,6 +130,7 @@ public class Utilizador {
 
 	public void menuUtilizador() {
 		saveData();
+		System.out.println(arvore.getTabela("Tabela1"));
 		int opcao;
 		System.out.println("------------------Menu do utilizador-----------------------");
 		System.out.println("1: Manipular registos");
@@ -141,7 +142,7 @@ public class Utilizador {
 		if (opcao == 2) {
 			iniciar();
 		}
-
+		
 	}
 
 	private void obterRegistos() {// caso seja selecionada a primeira opcao
@@ -218,21 +219,20 @@ public class Utilizador {
 	
 	private void criarRegisto(String nomeTabela,String nomeRegisto) {
 		 int elementos;
-		 String valor;
+		 String valor="";
 		 Registo registoAtual = new Registo();
 		 registoAtual.setNome(nomeRegisto);
 		 registoAtual.setUniqueID();
-		 registoAtual.getArrayRegisto();
 		 
-		System.out.println("Quantos elementos vais colocar?");
+		 System.out.println("Quantos elementos vais colocar?");
 		 elementos = ler.nextInt();
-		 
-		 for (int i =1; i < elementos; i++) {//NAO ESTA A FUNCIONAR CORRETAMENTE
-			 System.out.println("Introduz o valor: "+(i));
-			 valor  = ler.nextLine();
+
+		 while (valor.compareTo("EXIT")!=0) {
+			 System.out.println("Introduz o valor do registo");
+			 valor = ler.nextLine();
 			 registoAtual.getArrayRegisto().add(valor);
-			 
 		 }
+		 
 		 arvore.getTabela(nomeTabela).getRegistos().add(registoAtual);
 		 System.out.println("Registo criado com sucesso!");
 		 menuUtilizador();
@@ -369,6 +369,7 @@ public class Utilizador {
 		}
 		
 		System.out.println("Dados carregados com sucesso..");
+		System.out.println(arvore.getTabela("Tabela1"));
 		
 	}
 
