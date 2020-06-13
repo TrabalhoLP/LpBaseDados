@@ -11,11 +11,9 @@ public class Registo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String id; // timestamp hashed para criar um id que mais ninguem tem
-	private ArrayList arrayRegisto;
 	private String nome;
 
-
-
+	private ArrayList <ChaveValor> arrayRegisto;
 
 
 	public String  setUniqueID(){
@@ -77,7 +75,7 @@ public class Registo implements Serializable {
 
 	private int procura(String sair) {
 		for (int i = 0; i < arrayRegisto.size(); i++) {
-			if ((arrayRegisto.get(i))==sair) {// vai descobrir dentro do array a que indice corresponde a
+			if ((arrayRegisto.get(i).getValor())==sair) {// vai descobrir dentro do array a que indice corresponde a
 															// string que queremos retirar
 				return i;// caso encontremos uma correspondencia dentro do array retorna o indice onde
 							// essa string se encontra dentro do array

@@ -219,18 +219,33 @@ public class Utilizador {
 	
 	private void criarRegisto(String nomeTabela,String nomeRegisto) {
 		 int elementos;
+		 
+		 String valorChave="";
 		 String valor="";
 		 Registo registoAtual = new Registo();
 		 registoAtual.setNome(nomeRegisto);
 		 registoAtual.setUniqueID();
 		 
-		 System.out.println("Quantos elementos vais colocar?");
-		 elementos = ler.nextInt();
 
-		 while (valor.compareTo("EXIT")!=0) {
-			 System.out.println("Introduz o valor do registo");
+		 while (valor.compareTo("EXIT")!=0 ) {
+			 
+			 System.out.println("Nome do Campo?");
+			 valorChave = ler.nextLine();
+			 if(valorChave.compareTo("EXIT")==0){return;}
+			 System.out.println("Valor?");
 			 valor = ler.nextLine();
-			 registoAtual.getArrayRegisto().add(valor);
+			 
+			 if(valorChave.compareTo("EXIT")!=0||valor.compareTo("EXIT")!=0) {
+				 if (valorChave.compareTo("")==0) {
+					 valorChave = null;
+				 }
+				 if (valor.compareTo("")==0){
+					 valor = null;
+				 }
+				 
+				 registoAtual.getArrayRegisto().add(new ChaveValor (valorChave, valor));
+
+			 }
 		 }
 		 
 		 arvore.getTabela(nomeTabela).getRegistos().add(registoAtual);
