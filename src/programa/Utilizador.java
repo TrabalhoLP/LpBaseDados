@@ -1,18 +1,6 @@
 package programa;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -164,24 +152,24 @@ public class Utilizador {
 		System.out.println("2-Voltar ao Menu do Utilizador");
 		opcao = ler.nextInt();
 		if (opcao == 1) {
-			System.out.println("1-COMANDOS POSSIVEIS: CONSULTAR REGISTO");
-			System.out.println("\t ELIMINAR REGISTO");
-			System.out.println("\t CRIAR REGISTO");
-			ler.hasNextLine();
+			System.out.println("1-COMANDOS POSSIVEIS: \nCRIAR TABELA \nCONSULTAR TABELA \nCONSULTAR REGISTO");
+			System.out.println("ELIMINAR REGISTO");
+			System.out.println("CRIAR REGISTO");
+			ler.nextLine();
 			query = ler.nextLine();
 			if (query.compareTo("CONSULTAR REGISTO")==0) {// o que fazer no caso da escrita deste comando
 				consultarRegistos();
 			} else if (query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
 
 			} else if (query.compareTo("CRIAR REGISTO")==0) {
-
-				// criaRegisto();
+				 criarRegisto();
+				 
 			} else if (query.compareTo("CRIAR TABELA")==0) { // o que fazer no caso da escrita deste comando
 				System.out.println("Introduza o nome da tabela");
 				String nomeTabela = ler.next();
 				criarTabela(nomeTabela);
 
-			} else if (query.compareTo("CONSULTAR TABELA ")==0) {
+			} else if (query.compareTo("CONSULTAR TABELA")==0) {
 				System.out.println("Nome da tabela a consultar");
 				String nome = ler.next();
 				consultarTabela(nome);
@@ -221,12 +209,34 @@ public class Utilizador {
 	
 	private void criarTabela(String nome) {
 		arvore.criaTabela(nome);
+		menuUtilizador();
+
+	}
+	
+	private void criarRegisto() {
+		 int elementos;
+		 String valor;
+		 Registo registoAtual = new Registo();
+		 registoAtual.getArrayRegisto();
+		 
+		 System.out.println("Quantos elementos vais colocar?");
+		 elementos = ler.nextInt();
+		 
+		 for (int i = 0; i <= elementos; i++) {
+			 System.out.println("Introduz o valor "+(i+1));
+			 ler.nextLine();
+			 valor  = ler.nextLine();
+			 registoAtual.getArrayRegisto().add(valor);
+		 }
+		 arvore.getTabela().getRegistos().add(registoAtual);
+		 menuUtilizador();
 	}
 
 	private void consultarRegistos() {
 		String nomeRegisto;
 		System.out.println("Qual o nome do registo que pretende consultar?");
 		nomeRegisto = ler.nextLine();
+		menuUtilizador();
 
 	}
 
@@ -252,5 +262,32 @@ public class Utilizador {
 		}
 
 	}
+	
+	public void iniciaDados() {
+		
+		try {
+
+			FileInputStream fi = new FileInputStream(new File("dados.txt"));
+			ObjectInputStream oi = new ObjectInputStream(fi);
+
+			// Read objects
+			arvore = (Arvore) oi.readObject();
+
+			oi.close();
+			fi.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		} catch (IOException e) {
+			System.out.println("Error initializing stream");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Dados carregados com sucesso..");
+		
+	}
+
 
 }

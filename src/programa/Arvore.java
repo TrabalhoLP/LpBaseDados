@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Arvore implements Serializable{
 	
 	// conexao
+
 	
 	private static final long serialVersionUID = 1L;
 	private String nome;

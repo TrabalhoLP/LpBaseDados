@@ -1,9 +1,10 @@
 package programa;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
 
-public class NoTabela {
+public class NoTabela implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	
 	private ArrayList <Registo> registos;
@@ -24,6 +25,11 @@ public class NoTabela {
 
 	public void setRegistos(ArrayList<Registo> registos) {
 		this.registos = registos;
+	}
+	
+	public ArrayList getRegistos() {
+		
+		return this.registos;
 	}
 
 	public String getNome() {
@@ -95,5 +101,13 @@ public class NoTabela {
 		return true;
 	}
 	*/
+
+	@Override
+	public String toString() {
+		return "NoTabela [nome=" + nome + ", registos=" + registos.toString() + ", contaRegisto=" + contaRegisto + ", info=" + info
+				+ "]";
+	}
+	
+	
 	
 }

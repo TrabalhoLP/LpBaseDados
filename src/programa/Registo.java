@@ -1,15 +1,15 @@
 package programa;
-import java.util.Scanner;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.io.*;
 //ainda nao esta terminado, 
-public class Registo {
+public class Registo implements Serializable {
 
-	private Scanner ler = new Scanner(System.in);
+	private static final long serialVersionUID = 1L;
 	private String id; // timestamp hashed para criar um id que mais ninguem tem
 	private ArrayList arrayRegisto;
 	
@@ -42,23 +42,9 @@ public class Registo {
 	public Registo() {
 
 		arrayRegisto = new ArrayList();
-		utilizador();
+		
 	}
 
-	public void utilizador() {// para introduzir registos numa tabela
-		int a;
-		String valor;
-		System.out.println("Quantos campos vai introduzir");
-		a=ler.nextInt();
-		
-			
-		for (int i = 0; i < a; i++) { 
-			System.out.println("Introduz o valor para "+i);
-			valor = ler.next();
-			arrayRegisto.add(valor);
-		}
-		
-	}
 
 	public ArrayList getArrayRegisto() {
 		return arrayRegisto;
@@ -135,5 +121,14 @@ public class Registo {
 	public Object getCol(int a) {
 		return arrayRegisto.get(a);
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Registo [id=" + id + ", arrayRegisto=" + arrayRegisto + "]";
+	}
+	
+	
 
 }

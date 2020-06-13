@@ -6,6 +6,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Utilizador programa = new Utilizador();
+		programa.iniciaDados();
 		
 		programa.iniciar();
 		
