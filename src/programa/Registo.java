@@ -12,15 +12,18 @@ public class Registo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String id; // timestamp hashed para criar um id que mais ninguem tem
 	private ArrayList arrayRegisto;
-	
+	private String nome;
 
 
-	public static String  setUniqueID(){
+
+
+
+	public String  setUniqueID(){
 	    Date data = new Date();
 	    Timestamp paraTimestamp = new Timestamp(data.getTime());
 	    Date timestampParaData= new Date(paraTimestamp.getTime());
 	    String timeStamptostring=timestampParaData.toString();
-	    String id= timeStamptostring;
+	    this.id= timeStamptostring;
 	    System.out.println(id);
 	    return id;   
 	}
@@ -33,11 +36,6 @@ public class Registo implements Serializable {
 
 
 
-	public void setId() {
-		this.id = setUniqueID() ;
-	}
-
-
 
 	public Registo() {
 
@@ -47,9 +45,11 @@ public class Registo implements Serializable {
 
 
 	public ArrayList getArrayRegisto() {
+		
+		
 		return arrayRegisto;
 	}
-
+	
 	public void setArrayRegisto(ArrayList arrayRegisto) {
 		this.arrayRegisto = arrayRegisto;
 	}
@@ -126,7 +126,21 @@ public class Registo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Registo [id=" + id + ", arrayRegisto=" + arrayRegisto + "]";
+		return "Registo [id=" + id + ", arrayRegisto=" + arrayRegisto + ", nome=" + nome  + ", getArrayRegisto()=" + getArrayRegisto() + ", getNome()="
+				+ getNome() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	public String setNome(String nome) {
+		return this.nome = nome;
 	}
 	
 	

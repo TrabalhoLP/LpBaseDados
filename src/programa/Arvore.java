@@ -28,8 +28,13 @@ public class Arvore implements Serializable{
 		System.out.println("Tabela <"+ nome + "> Criada com sucesso ");
 	}
 	
-	public NoTabela getTabela() {
-		return tabelas.get(0);// temos de mudar isto para encontrar a tabela pelo o nome
+	public NoTabela getTabela(String nome) {
+		for(int i=0; i<tabelas.size();i++) {
+			if(tabelas.get(i).getNome().compareTo(nome)==0) {
+				return tabelas.get(i);
+			}
+		}
+		return null;// temos de mudar isto para encontrar a tabela pelo o nome
 	}
 	
 	//remover tabela //tem de se ver se tem coisas ou não;

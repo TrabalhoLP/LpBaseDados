@@ -160,9 +160,13 @@ public class Utilizador {
 			if (query.compareTo("CONSULTAR REGISTO")==0) {// o que fazer no caso da escrita deste comando
 				consultarRegistos();
 			} else if (query.compareTo("ELIMINAR REGISTO")==0) { // o que fazer no caso da escrita deste comando
-
+				eliminarRegisto();
 			} else if (query.compareTo("CRIAR REGISTO")==0) {
-				 criarRegisto();
+				System.out.println("Qual o nome da tabela onde pretende criar o registo?");
+				String nomeTabela=ler.nextLine();
+				System.out.println("Qual o nome do registo que pretende criar?");
+				String nomeRegisto=ler.nextLine();
+				 criarRegisto(nomeTabela,nomeRegisto);
 				 
 			} else if (query.compareTo("CRIAR TABELA")==0) { // o que fazer no caso da escrita deste comando
 				System.out.println("Introduza o nome da tabela");
@@ -201,8 +205,7 @@ public class Utilizador {
 
 	private void consultarTabela(String nome) {
 		
-		NoTabela tabela = arvore.getTabela(); // vai buscar ao metodo da arvore que ainda não esta totalmente otimizado
-		
+		NoTabela tabela = arvore.getTabela(nome); // vai buscar ao metodo da arvore que ainda não esta totalmente otimizado
 		System.out.println(tabela.toString());
 		menuUtilizador();
 	}
@@ -213,37 +216,66 @@ public class Utilizador {
 
 	}
 	
-	private void criarRegisto() {
+	private void criarRegisto(String nomeTabela,String nomeRegisto) {
 		 int elementos;
 		 String valor;
 		 Registo registoAtual = new Registo();
+		 registoAtual.setNome(nomeRegisto);
+		 registoAtual.setUniqueID();
 		 registoAtual.getArrayRegisto();
 		 
-		 System.out.println("Quantos elementos vais colocar?");
+		System.out.println("Quantos elementos vais colocar?");
 		 elementos = ler.nextInt();
 		 
-		 for (int i = 0; i <= elementos; i++) {
-			 System.out.println("Introduz o valor "+(i+1));
-			 ler.nextLine();
+		 for (int i =1; i < elementos; i++) {//NAO ESTA A FUNCIONAR CORRETAMENTE
+			 System.out.println("Introduz o valor: "+(i));
 			 valor  = ler.nextLine();
 			 registoAtual.getArrayRegisto().add(valor);
+			 
 		 }
-		 arvore.getTabela().getRegistos().add(registoAtual);
+		 arvore.getTabela(nomeTabela).getRegistos().add(registoAtual);
+		 System.out.println("Registo criado com sucesso!");
 		 menuUtilizador();
 	}
 
 	private void consultarRegistos() {
-		String nomeRegisto;
+		String nomeRegisto, nomeTabela;
+		System.out.println("Qual o nome da tabela que pretende consultar?");
+		nomeTabela=ler.nextLine();
 		System.out.println("Qual o nome do registo que pretende consultar?");
-		nomeRegisto = ler.nextLine();
+		nomeRegisto=ler.nextLine();
+		System.out.println(arvore.getTabela(nomeTabela).getRegisto(nomeRegisto).toString());
 		menuUtilizador();
-
-	}
+		}
 
 	private void eliminarRegisto() {
-
-	}
-
+		String nomeTabela,nomeRegisto;
+		System.out.println("Qual o nome da tabela na qual pretende eliminar o registo?");
+		nomeTabela=ler.nextLine();
+		System.out.println("Qual o nome do registo que pretende eliminar?");
+		nomeRegisto=ler.nextLine();
+		
+			 
+		int elementos;
+			 String valor;
+			 Registo registoAtual = new Registo();
+			 registoAtual.setNome(nomeRegisto);
+			 registoAtual.setUniqueID();
+			 registoAtual.getArrayRegisto();
+			 
+			System.out.println("Quantos elementos vais eliminar?");
+			 elementos = ler.nextInt();
+			 
+			 for (int i =1; i < elementos; i++) {//NAO ESTA A FUNCIONAR CORRETAMENTE
+				 System.out.println("Introduz o valor: "+(i));
+				 valor  = ler.nextLine();
+				 arvore.getTabela(nomeTabela).getRegisto(nomeRegisto).eliminarRegisto(valor);;
+				 
+			 }
+			 System.out.println("Eliminado(s) com sucesso!");
+			 menuUtilizador();
+		}
+	
 	public void saveData() {
 
 		try {
@@ -262,6 +294,57 @@ public class Utilizador {
 		}
 
 	}
+/*	public void deleteData() throws IOException {
+		// PrintWriter object for output.txt 
+        PrintWriter pw = new PrintWriter("dados.txt"); 
+          
+        // BufferedReader object for input.txt 
+        BufferedReader br1 = new BufferedReader(new FileReader("dados.txt")); 
+          
+        String line1 = br1.readLine(); 
+          
+        // loop for each line of input.txt 
+        while(line1 != null) 
+        { 
+            boolean flag = false; 
+              
+            // BufferedReader object for delete.txt 
+            BufferedReader br2 = new BufferedReader(new FileReader("dados.txt")); 
+              
+            String line2 = br2.readLine(); 
+              
+            // loop for each line of delete.txt 
+            while(line2 != null) 
+            { 
+                if(line1.equals(line2)) 
+                { 
+                    flag = true; 
+                    break; 
+                } 
+                  
+                line2 = br2.readLine(); 
+            } 
+              
+            // if flag = false 
+            // write line of input.txt to output.txt 
+            if(!flag) 
+                pw.println(line1); 
+              
+            line1 = br1.readLine(); 
+              
+        } 
+          
+        pw.flush(); 
+          
+        // closing resources 
+        br1.close(); 
+        pw.close(); 
+          
+        System.out.println("File operation performed successfully"); 
+    }*/
+        
+  
+	
 	
 	public void iniciaDados() {
 		

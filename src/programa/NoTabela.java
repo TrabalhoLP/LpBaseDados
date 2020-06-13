@@ -31,6 +31,14 @@ public class NoTabela implements Serializable {
 		
 		return this.registos;
 	}
+	public Registo getRegisto(String nomeRegisto) {
+		for(int i=0; i<registos.size();i++) {
+			if(registos.get(i).getNome().compareTo(nomeRegisto)==0) {
+				return registos.get(i);
+			}
+		}
+		return null;// temos de mudar isto para encontrar a tabela pelo o nome
+	}
 
 	public String getNome() {
 		return nome;
@@ -44,6 +52,7 @@ public class NoTabela implements Serializable {
 		
 		return info;
 	}
+	
 	
 /*	public ArrayList getRegistos() {
 		return this.registos;
