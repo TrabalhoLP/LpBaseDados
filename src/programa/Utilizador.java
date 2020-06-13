@@ -2,11 +2,15 @@ package programa;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.file.Files;
@@ -77,12 +81,7 @@ public class Utilizador {
 		if(opcao==1) {
 			// introduz a password
 			System.out.println(users);
-			try {
-				leitor();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ler();
 			menuUtilizador();
 			
 			
@@ -90,16 +89,55 @@ public class Utilizador {
 		
 		if(opcao==2) {// criar novo utilizador
 			System.out.println(users);
-			try {
-				escritor();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ler();
 			
 		}
 
 	}
+	public void ler() {
+		 System.out.println("Username:");
+			String username= ler.next();
+			System.out.println("Password");
+			String password= ler.next();
+		User novoUser = new User(username,password);
+		
+		try {
+			 String file = "userspass.txt";
+			Path path = Paths.get("\\\\kLAPTOP-GK358VHC\\Users\\Cristiana Modesto\\projetoLP\\LpBaseDados\\src\\programa\\pastaficheiros", file);
+			FileOutputStream f = new FileOutputStream(path.toFile());
+			ObjectOutputStream o = new ObjectOutputStream(f);
+
+			// Write objects to file
+			o.writeObject(novoUser);
+			
+
+			o.close();
+			f.close();
+
+			FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
+			ObjectInputStream oi = new ObjectInputStream(fi);
+
+			// Read objects
+			
+			User u1 = (User) oi.readObject();
+
+			System.out.println(u1.toString());
+			
+
+			oi.close();
+			fi.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		} catch (IOException e) {
+			System.out.println("Error initializing stream");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
 
 /*	public void readData(ArrayList<User> paraLer) {
 		

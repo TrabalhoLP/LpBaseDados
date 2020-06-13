@@ -1,19 +1,55 @@
 package programa;
-
 import java.util.Scanner;
-import java.util.UUID;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 //ainda nao esta terminado, 
 public class Registo {
 
 	private Scanner ler = new Scanner(System.in);
-	private int id; // timestamp hashed para criar um id que mais ninguem tem
+	private String id; // timestamp hashed para criar um id que mais ninguem tem
 	private ArrayList arrayRegisto;
+	private String nomeRegisto;
 	
+	public String getNomeRegisto() {
+		return nomeRegisto;
+	}
 
+
+
+	public void setNomeRegisto(String nomeRegisto) {
+		this.nomeRegisto = nomeRegisto;
+	}
+
+
+
+	public static String  setUniqueID(){
+	    Date data = new Date();
+	    Timestamp paraTimestamp = new Timestamp(data.getTime());
+	    Date timestampParaData= new Date(paraTimestamp.getTime());
+	    String timeStamptostring=timestampParaData.toString();
+	    String id= timeStamptostring;
+	    System.out.println(id);
+	    return id;   
+	}
 	
 	
 	
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId() {
+		this.id = setUniqueID() ;
+	}
+
+
+
 	public Registo() {
 
 		arrayRegisto = new ArrayList();
