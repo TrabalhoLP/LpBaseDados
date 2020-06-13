@@ -12,18 +12,7 @@ public class Registo {
 	private Scanner ler = new Scanner(System.in);
 	private String id; // timestamp hashed para criar um id que mais ninguem tem
 	private ArrayList arrayRegisto;
-	private String nomeRegisto;
 	
-	public String getNomeRegisto() {
-		return nomeRegisto;
-	}
-
-
-
-	public void setNomeRegisto(String nomeRegisto) {
-		this.nomeRegisto = nomeRegisto;
-	}
-
 
 
 	public static String  setUniqueID(){

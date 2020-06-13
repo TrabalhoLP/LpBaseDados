@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Stack;
 
 import jdk.jshell.spi.ExecutionControl.UserException;
 public class Utilizador {
@@ -475,8 +476,8 @@ try	{
 /*	private void criaRegisto() {
 		String nomeTabela;
 		int tamanhoTabela;
-		ArrayList <Registo> registos= new ArrayList();
-		
+		ArrayList <Registo> registos= new ArrayList <Registo>();
+		registos.setID();
 		System.out.println("Qual o nome que pretende dar à tabela?");
 		nomeTabela=ler.next();
 		System.out.println("Qual o tamanho da tabela que pretende criar?");
@@ -490,7 +491,32 @@ try	{
 
 
 	private void consultarRegistos() {
+		String nomeRegisto;
+		System.out.println("Qual o nome do registo que pretende consultar?");
+		nomeRegisto=ler.nextLine();
 		
 		
 	}
+	
+	
+	private void eliminarRegisto() {
+	
+     }
+
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
