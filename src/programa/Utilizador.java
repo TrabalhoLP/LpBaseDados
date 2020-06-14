@@ -218,7 +218,7 @@ public class Utilizador {
 	}
 
 	private void criarRegisto(String nomeTabela) {
-		int elementos;
+		int elementos = 0;
 
 		String valorChave = "";
 		String valor = "";
@@ -230,8 +230,10 @@ public class Utilizador {
 			System.out.println("Nome do Campo?");
 			valorChave = ler.nextLine();
 			if (valorChave.compareTo("EXIT") == 0) {
+				if(elementos==0) {menuUtilizador();}
 				arvore.getTabela(nomeTabela).getRegistos().add(registoAtual);
 				System.out.println("Registo criado com sucesso!");
+				elementos =0;
 				menuUtilizador();
 			}
 			System.out.println("Valor?");
@@ -246,11 +248,13 @@ public class Utilizador {
 				}
 
 				registoAtual.getArrayRegisto().add(new ChaveValor(valorChave, valor));
+				elementos++;
 
 			}
 		}
 
 		arvore.getTabela(nomeTabela).getRegistos().add(registoAtual);
+		elementos=0;
 		System.out.println("Registo criado com sucesso!");
 		menuUtilizador();
 	}
