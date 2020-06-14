@@ -69,6 +69,7 @@ public class Utilizador {
 		System.out.println("\nIntroduz o valor da opcao");
 		opcao = ler.nextInt();
 
+		
 		if (opcao == 1) {
 			// introduz a password
 			String username, password;
@@ -84,9 +85,10 @@ public class Utilizador {
 		}
 
 		if (opcao == 2) {// criar novo utilizador
-			registarNovoUser();// escrever()
+			registarNovoUser();
 
 		}
+
 		if (opcao == 3) {// "desligar" a base de dados
 			return;
 		}
@@ -156,14 +158,15 @@ public class Utilizador {
 		
 		int opcao;
 		System.out.println("------------------Menu do utilizador-----------------------");
-		System.out.println("1: Manipular registos");
-		System.out.println("2:Voltar ao menu iniciar");
+		System.out.println("1: Voltar ao menu iniciar");
+		System.out.println("2:Manipular registos");
 		opcao = ler.nextInt();
 		if (opcao == 1) {
-			manipularRegistos();
+			iniciar();
 		}
 		if (opcao == 2) {
-			iniciar();
+			
+			manipularRegistos();
 		}
 
 	}
@@ -344,7 +347,7 @@ public class Utilizador {
 
 			for (int y = 0; y < registoAtual.getArrayRegisto().size(); y++) {
 				ChaveValor dado = (ChaveValor) dados.get(y);
-				System.out.println(dado.toString());
+				
 				if (dado.getChave().compareTo(chaveEvalor[0]) == 0) {
 					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
 						System.out.println("Introduza uma nova designacao para o chave:");
@@ -437,9 +440,9 @@ public class Utilizador {
 						}
 					}
 				} else {
-					System.out.println("Nada encontrado");
+					System.out.println(" ");
 				}
-
+				System.out.println("Nada encontrado!");
 			}
 		}
 		menuUtilizador();
