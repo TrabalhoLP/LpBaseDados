@@ -81,7 +81,7 @@ public class Utilizador {
 			System.out.println("Password?");
 			password = ler.nextLine();
 			
-			System.out.println(procurarUsername(username, password));
+			procurarUsername(username, password);//sysout
 			iniciar();
 			
 		}
@@ -96,6 +96,16 @@ public class Utilizador {
 		}
 
 	}
+	
+	public void mostrarTabelas() {
+		for(int i=0;i<arvore.getTabelas().size();i++) {
+			System.out.println(arvore.getTabelas().get(i));
+			}
+		}
+	
+	
+	
+	
 	public void registarNovoUser() {//escrever()
 		
 		System.out.println("Username:");
@@ -151,7 +161,7 @@ public class Utilizador {
 
 	public void menuUtilizador() {
 		saveData();
-		System.out.println(arvore.getTabela("Tabela1"));
+	//	System.out.println(arvore.getTabela("Tabela1"));
 		int opcao;
 		System.out.println("------------------Menu do utilizador-----------------------");
 		System.out.println("1: Manipular registos");
@@ -177,6 +187,8 @@ public class Utilizador {
 			System.out.println("1-COMANDOS POSSIVEIS: \nCRIAR TABELA \nELIMINAR TABELA \nCONSULTAR TABELA \nCONSULTAR REGISTO");
 			System.out.println("ELIMINAR REGISTO");
 			System.out.println("CRIAR REGISTO");
+			System.out.println("ATUALIZAR REGISTO");
+			System.out.println("MOSTRAR ARVORE");
 			ler.nextLine();
 			query = ler.nextLine();
 			if (query.compareTo("CONSULTAR REGISTO") == 0) {// o que fazer no caso da escrita deste comando
@@ -202,13 +214,18 @@ public class Utilizador {
 			
 			} else if (query.compareTo("ELIMINAR TABELA") == 0) {
 			eliminarTabela();
+			}else if (query.compareTo("ATUALIZAR REGISTO") == 0) {
+			atualizarRegistos();
+			}else if(query.compareTo("MOSTRAR ARVORE")==0) {
+			mostrarTabelas();
 			}
-
+			
+			
 			else {// caso o comando seja escrito de forma incorreta
 				System.out.print("Comando escrito de forma incorreta ou nao existente");
 				manipularRegistos();
 			}
-		}
+	}
 
 		if (opcao == 2) {
 			menuUtilizador();
@@ -258,6 +275,7 @@ public class Utilizador {
 			}
 			System.out.println("Valor?");
 			valor = ler.nextLine();
+			
 
 			if (valorChave.compareTo("EXIT") != 0 || valor.compareTo("EXIT") != 0) {
 				if (valorChave.compareTo("") == 0) {
@@ -319,6 +337,77 @@ public class Utilizador {
 		menuUtilizador();
 
 	}
+	
+	private void atualizarRegistos() {
+		String nomeRegisto, nomeTabela;
+		int escolha;
+		System.out.println("Qual o nome da tabela que pretende consultar?");
+		nomeTabela = ler.nextLine();
+		System.out.println("Indique o registo que pretende consultar atraves da notacao campo:valor");
+		nomeRegisto = ler.nextLine();
+		String chaveEvalor[] = splice(nomeRegisto);
+
+		ArrayList TodosRegistos = arvore.getTabela(nomeTabela).getRegistos();
+
+		for (int i = 0; i < TodosRegistos.size(); i++) {
+			Registo registoAtual = (Registo) TodosRegistos.get(i);
+			ArrayList dados = registoAtual.getArrayRegisto();
+
+			for (int y = 0; y < registoAtual.getArrayRegisto().size(); y++) {
+				ChaveValor dado = (ChaveValor) dados.get(y);
+
+				if (dado.getChave().compareTo(chaveEvalor[0]) == 0) {
+					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
+						System.out.println("Introduza uma nova designacao para o campo:");
+						String campo=ler.nextLine();
+						dado.setChave(campo);
+						System.out.println("Introduza uma nova designacao para o valor do campo:");
+						String valor=ler.nextLine();
+						dado.setValor(valor);
+						
+						System.out.println("Dados atualizados"); 
+																											// temos de
+																											// comparar
+																											// a chave
+																											// com a
+																											// chave que
+					}
+				} else {
+					System.out.println("Nada encontrado");
+				}
+				
+			}
+		
+			
+		}
+
+		menuUtilizador();
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private void eliminarTabela() {
 		int opcao;
 		System.out.println("Qual a tabela que pretende eliminar?");
