@@ -101,6 +101,7 @@ public class Utilizador {
 		for (int i = 0; i < arvore.getTabelas().size(); i++) {
 			System.out.println(arvore.getTabelas().get(i));
 		}
+		menuUtilizador();
 	}
 
 	public void registarNovoUser() {
