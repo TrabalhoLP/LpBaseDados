@@ -37,6 +37,8 @@ public class Utilizador {
 			System.out.println(users.get(i));
 			if (username.compareTo(users.get(i).getUsername()) == 0) {
 				if (verificaPassword(users.get(i), password)) {
+					menuUtilizador();
+
 					return users.get(i).getUsername() + users.get(i).getPassword();
 				}
 			}
@@ -62,7 +64,7 @@ public class Utilizador {
 		int opcao = 0;
 
 		System.out.println("Olá Bem vindo á base dados alternativa");
-		System.out.println("\nOpção 1 --> Entrar na base de dados, com uma conexão já existente");
+		System.out.println("\nOpção 1 --> Entrar na base de dados, com utilizador existente");
 		System.out.println("\nOpção 2 --> Criar um utilizador");
 
 		System.out.println("\nIntroduz o valor da opção");
@@ -70,10 +72,18 @@ public class Utilizador {
 
 		if (opcao == 1) {
 			// introduz a password
-			System.out.println(users);
+			String username, password;
+			System.out.println(users.toString());
 			// ler();
-			menuUtilizador();
-
+			System.out.println("Username?");
+			ler.nextLine();
+			username = ler.nextLine();
+			System.out.println("Password?");
+			password = ler.nextLine();
+			
+			System.out.println(procurarUsername(username, password));
+			iniciar();
+			
 		}
 
 		if (opcao == 2) {// criar novo utilizador

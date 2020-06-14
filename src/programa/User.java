@@ -35,4 +35,10 @@ public class User implements Serializable {
 	public String getUsername() {
 		return this.username;
 	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + "]";
+	}
+	
 }
