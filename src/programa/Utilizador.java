@@ -240,6 +240,7 @@ public class Utilizador {
 			if (arvore.getTabelas().get(i).equals(tabela)) {
 				System.out.println(tabela.toString());
 				menuUtilizador();
+				return;
 			}
 		}
 		System.out.println("Tabela nao existente!");
