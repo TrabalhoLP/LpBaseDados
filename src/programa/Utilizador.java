@@ -39,7 +39,7 @@ public class Utilizador {
 				if (verificaPassword(users.get(i), password)) {
 					menuUtilizador();
 
-					          // users.get(i).getUsername() + users.get(i).getPassword(); 
+					// users.get(i).getUsername() + users.get(i).getPassword();
 				}
 			}
 		}
@@ -80,34 +80,31 @@ public class Utilizador {
 			username = ler.nextLine();
 			System.out.println("Password?");
 			password = ler.nextLine();
-			
-			procurarUsername(username, password);//sysout
+
+			procurarUsername(username, password);// sysout
 			iniciar();
-			
+
 		}
 
 		if (opcao == 2) {// criar novo utilizador
 			System.out.println(users);
-			registarNovoUser();//escrever()
+			registarNovoUser();// escrever()
 
 		}
-		if(opcao==3) {// "desligar" a base de dados
+		if (opcao == 3) {// "desligar" a base de dados
 			return;
 		}
 
 	}
-	
+
 	public void mostrarTabelas() {
-		for(int i=0;i<arvore.getTabelas().size();i++) {
+		for (int i = 0; i < arvore.getTabelas().size(); i++) {
 			System.out.println(arvore.getTabelas().get(i));
-			}
 		}
-	
-	
-	
-	
-	public void registarNovoUser() {//escrever()
-		
+	}
+
+	public void registarNovoUser() {// escrever()
+
 		System.out.println("Username:");
 		String username = ler.next();
 		System.out.println("Password:");
@@ -131,8 +128,7 @@ public class Utilizador {
 		iniciar();
 	}
 
-	public void procurarUsersEPassAposCarregamentoDeDados() {//ler()
-
+	public void procurarUsersEPassAposCarregamentoDeDados() {// ler()
 
 		try {
 
@@ -161,7 +157,7 @@ public class Utilizador {
 
 	public void menuUtilizador() {
 		saveData();
-	//	System.out.println(arvore.getTabela("Tabela1"));
+		// System.out.println(arvore.getTabela("Tabela1"));
 		int opcao;
 		System.out.println("------------------Menu do utilizador-----------------------");
 		System.out.println("1: Manipular registos");
@@ -176,7 +172,7 @@ public class Utilizador {
 
 	}
 
-	private void manipularRegistos() {// caso seja selecionada a primeira opcao //  obterRegisto()
+	private void manipularRegistos() {// caso seja selecionada a primeira opcao // obterRegisto()
 		String query;
 		int opcao;
 		System.out.println("------------------Menu Manipular Registos-------------");
@@ -184,7 +180,8 @@ public class Utilizador {
 		System.out.println("2-Voltar ao Menu do Utilizador");
 		opcao = ler.nextInt();
 		if (opcao == 1) {
-			System.out.println("1-COMANDOS POSSIVEIS: \nCRIAR TABELA \nELIMINAR TABELA \nCONSULTAR TABELA \nCONSULTAR REGISTO");
+			System.out.println(
+					"1-COMANDOS POSSIVEIS: \nCRIAR TABELA \nELIMINAR TABELA \nCONSULTAR TABELA \nCONSULTAR REGISTO");
 			System.out.println("ELIMINAR REGISTO");
 			System.out.println("CRIAR REGISTO");
 			System.out.println("ATUALIZAR REGISTO");
@@ -211,39 +208,37 @@ public class Utilizador {
 				System.out.println("Introduza o nome da tabela:");
 				String nome = ler.next();
 				consultarTabela(nome);
-			
+
 			} else if (query.compareTo("ELIMINAR TABELA") == 0) {
-			eliminarTabela();
-			}else if (query.compareTo("ATUALIZAR REGISTO") == 0) {
-			atualizarRegistos();
-			}else if(query.compareTo("MOSTRAR ARVORE")==0) {
-			mostrarTabelas();
+				eliminarTabela();
+			} else if (query.compareTo("ATUALIZAR REGISTO") == 0) {
+				atualizarRegistos();
+			} else if (query.compareTo("MOSTRAR ARVORE") == 0) {
+				mostrarTabelas();
 			}
-			
-			
+
 			else {// caso o comando seja escrito de forma incorreta
 				System.out.print("Comando escrito de forma incorreta ou nao existente");
 				manipularRegistos();
 			}
-	}
+		}
 
 		if (opcao == 2) {
 			menuUtilizador();
 		}
 	}
 
-
 	private void consultarTabela(String nome) {
 		NoTabela tabela = arvore.getTabela(nome);
-		for(int i=0;i<arvore.getTabelas().size();i++) {
-			if(arvore.getTabelas().get(i).equals(tabela)) {
+		for (int i = 0; i < arvore.getTabelas().size(); i++) {
+			if (arvore.getTabelas().get(i).equals(tabela)) {
 				System.out.println(tabela.toString());
 				menuUtilizador();
 			}
 		}
 		System.out.println("Tabela nao existente!");
-		 
-			
+		menuUtilizador();
+
 	}
 
 	private void criarTabela(String nome) {
@@ -275,7 +270,6 @@ public class Utilizador {
 			}
 			System.out.println("Valor?");
 			valor = ler.nextLine();
-			
 
 			if (valorChave.compareTo("EXIT") != 0 || valor.compareTo("EXIT") != 0) {
 				if (valorChave.compareTo("") == 0) {
@@ -328,16 +322,15 @@ public class Utilizador {
 				} else {
 					System.out.println("Nada encontrado");
 				}
-				
+
 			}
-		
-			
+
 		}
 
 		menuUtilizador();
 
 	}
-	
+
 	private void atualizarRegistos() {
 		String nomeRegisto, nomeTabela;
 		int escolha;
@@ -355,86 +348,60 @@ public class Utilizador {
 
 			for (int y = 0; y < registoAtual.getArrayRegisto().size(); y++) {
 				ChaveValor dado = (ChaveValor) dados.get(y);
-
+				System.out.println(dado.toString());
 				if (dado.getChave().compareTo(chaveEvalor[0]) == 0) {
 					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
-						System.out.println("Introduza uma nova designacao para o campo:");
-						String campo=ler.nextLine();
+						System.out.println("Introduza uma nova designacao para o chave:");
+						String campo = ler.nextLine();
 						dado.setChave(campo);
 						System.out.println("Introduza uma nova designacao para o valor do campo:");
-						String valor=ler.nextLine();
+						String valor = ler.nextLine();
 						dado.setValor(valor);
-						
-						System.out.println("Dados atualizados"); 
-																											// temos de
-																											// comparar
-																											// a chave
-																											// com a
-																											// chave que
+
+						System.out.println("Dados atualizados");
+						// temos de
+						// comparar
+						// a chave
+						// com a
+						// chave que
 					}
-				} else {
-					System.out.println("Nada encontrado");
 				}
-				
+
 			}
-		
-			
+
 		}
 
 		menuUtilizador();
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	private void eliminarTabela() {
 		int opcao;
 		System.out.println("Qual a tabela que pretende eliminar?");
-		String nomeTabela= ler.nextLine();
+		String nomeTabela = ler.nextLine();
 		ArrayList tabelaERegistosAApagar = arvore.getTabela(nomeTabela).getRegistos();
-		if(!tabelaERegistosAApagar.isEmpty()) {
-		System.out.println("Ao realizar esta operacao, vai perder todos os dados existentes na tabela!");
-		System.out.println("1-Caso pretenda prosseguir com a eliminacao da tabela");
-		System.out.println("2-Caso pretenda regressar ao menu anterior");
-		opcao=ler.nextInt();
-		if(opcao==1) {
-			NoTabela aRetirar=arvore.getTabela(nomeTabela);
-			arvore.getTabelas().remove(aRetirar);
-			System.out.println("Tabela eliminada com sucesso!");
-			menuUtilizador();
+		if (!tabelaERegistosAApagar.isEmpty()) {
+			System.out.println("Ao realizar esta operacao, vai perder todos os dados existentes na tabela!");
+			System.out.println("1-Caso pretenda prosseguir com a eliminacao da tabela");
+			System.out.println("2-Caso pretenda regressar ao menu anterior");
+			opcao = ler.nextInt();
+			if (opcao == 1) {
+				NoTabela aRetirar = arvore.getTabela(nomeTabela);
+				arvore.getTabelas().remove(aRetirar);
+				System.out.println("Tabela eliminada com sucesso!");
+				menuUtilizador();
 
-		}
-		if(opcao==2) {
-			manipularRegistos();
-		}
-		}else {
-			NoTabela aRetirar=arvore.getTabela(nomeTabela);
+			}
+			if (opcao == 2) {
+				manipularRegistos();
+			}
+		} else {
+			NoTabela aRetirar = arvore.getTabela(nomeTabela);
 			arvore.getTabelas().remove(aRetirar);
 			System.out.println("Tabela eliminada com sucesso!");
 			menuUtilizador();
 		}
-		
+
 	}
 
 	private void eliminarRegisto() {
@@ -442,7 +409,7 @@ public class Utilizador {
 		String nomeTabela, nomeRegisto;
 		System.out.println("Qual o nome da tabela na qual pretende eliminar o registo?");
 		nomeTabela = ler.nextLine();
-		
+
 		System.out.println("Indique o registo que pretende eliminar atraves da notacao campo:valor ");
 		nomeRegisto = ler.nextLine();
 
@@ -466,8 +433,8 @@ public class Utilizador {
 						escolha = ler.nextInt();
 						if (escolha == 1) {
 							dados.remove(y); // remover o objecto que lá esta
-							
-						}else if(escolha == 2) {
+
+						} else if (escolha == 2) {
 							TodosRegistos.remove(i); // remove o registo todo
 						} else {
 							manipularRegistos();
@@ -502,7 +469,7 @@ public class Utilizador {
 	}
 
 	public void iniciaDados() {
-		
+
 		try {
 
 			FileInputStream fi = new FileInputStream(new File("dados.txt"));
@@ -524,7 +491,7 @@ public class Utilizador {
 		}
 
 		System.out.println("Dados carregados com sucesso..");
-	//	System.out.println(arvore.getTabela("Tabela1"));
+		// System.out.println(arvore.getTabela("Tabela1"));
 		/*
 		 * System.out.println(arvore.getTabela("Tabela1").getRegistos().get(0).getClass(
 		 * ));
@@ -533,7 +500,7 @@ public class Utilizador {
 		 * ChaveValor chave = (ChaveValor) cena.getArrayRegisto().get(0);
 		 * System.out.println(chave.getChave());
 		 */
-		procurarUsersEPassAposCarregamentoDeDados();//ler()
+		procurarUsersEPassAposCarregamentoDeDados();// ler()
 
 	}
 
