@@ -124,7 +124,7 @@ public class Registo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Registo [id=" + id + ", arrayRegisto=" + arrayRegisto.toString() + ", nome=" + nome + "]";
+		return "ID do Registo=" + id + "\t Registo da tabela:" + arrayRegisto.toString().replace("[", " ").replace("]", " ")+" \n"  ;
 	}
 
 	public String getNome() {

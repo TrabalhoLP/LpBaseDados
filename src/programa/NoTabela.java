@@ -98,8 +98,7 @@ public class NoTabela implements Serializable {
 
 	@Override
 	public String toString() {
-		return "NoTabela [nome=" + nome + ", registos=" + registos.toString() + ", contaRegisto=" + contaRegisto
-				+ ", info=" + info + "]";
+		return "\nNome da tabela:" + nome +"\n"+ "Conteúdo da tabela:"+"\n" + registos.toString().replace("[", " ").replace("]", " ").replace(",", "") ;//contaregistos e info não têm valores
 	}
 
 }

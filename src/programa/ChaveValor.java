@@ -35,7 +35,7 @@ public class ChaveValor  implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ChaveValor [chave=" + chave + ", valor=" + valor + "]";
+		return " (chave=" + chave + ", valor=" + valor + ")";
 	}
 	
 }
