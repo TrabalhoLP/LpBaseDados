@@ -14,6 +14,7 @@ import jdk.jshell.spi.ExecutionControl.UserException;
 public class Utilizador {
 
 	private Arvore arvore; // o objecto
+	private User user;
 	private Scanner ler = new Scanner(System.in);
 	private ArrayList<User> users = new ArrayList<User>();
 	// substuir isto pela classe user. ou seja depois temos um array de objectos
@@ -46,8 +47,8 @@ public class Utilizador {
 	public void inserirNoArrayList(String username, String password) {// procurar username no arraylist onde se
 																		// encontram os usernames
 
-		User novoUser = new User(username, password);
-		users.add(novoUser);
+		user = new User(username, password);
+		users.add(user);
 
 	}
 
@@ -77,41 +78,49 @@ public class Utilizador {
 
 		if (opcao == 2) {// criar novo utilizador
 			System.out.println(users);
-			ler();
+			escrever();
 
+		}
+
+	}
+	public void escrever() {
+		
+		System.out.println("Username:");
+		String username = ler.next();
+		System.out.println("Password");
+		String password = ler.next();
+		user = new User(username, password);
+		users.add(user);
+		try {
+			FileOutputStream file = new FileOutputStream(new File("users.txt"));
+			ObjectOutputStream output = new ObjectOutputStream(file);
+
+			output.writeObject(users);
+
+			output.close();
+			file.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		} catch (IOException e) {
+			System.out.println("Error initializing stream");
 		}
 
 	}
 
 	public void ler() {
-		System.out.println("Username:");
-		String username = ler.next();
-		System.out.println("Password");
-		String password = ler.next();
-		User novoUser = new User(username, password);
+
 
 		try {
-			String file = "userspass.txt";
-			Path path = Paths.get(
-					"\\\\kLAPTOP-GK358VHC\\Users\\Cristiana Modesto\\projetoLP\\LpBaseDados\\src\\programa\\pastaficheiros",
-					file);
-			FileOutputStream f = new FileOutputStream(path.toFile());
-			ObjectOutputStream o = new ObjectOutputStream(f);
 
-			// Write objects to file
-			o.writeObject(novoUser);
-
-			o.close();
-			f.close();
-
-			FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
+			FileInputStream fi = new FileInputStream(new File("users.txt"));
 			ObjectInputStream oi = new ObjectInputStream(fi);
 
 			// Read objects
 
-			User u1 = (User) oi.readObject();
+			users = (ArrayList) oi.readObject();
 
-			System.out.println(u1.toString());
+			System.out.println(users.toString());
 
 			oi.close();
 			fi.close();
@@ -230,10 +239,12 @@ public class Utilizador {
 			System.out.println("Nome do Campo?");
 			valorChave = ler.nextLine();
 			if (valorChave.compareTo("EXIT") == 0) {
-				if(elementos==0) {menuUtilizador();}
+				if (elementos == 0) {
+					menuUtilizador();
+				}
 				arvore.getTabela(nomeTabela).getRegistos().add(registoAtual);
 				System.out.println("Registo criado com sucesso!");
-				elementos =0;
+				elementos = 0;
 				menuUtilizador();
 			}
 			System.out.println("Valor?");
@@ -254,7 +265,7 @@ public class Utilizador {
 		}
 
 		arvore.getTabela(nomeTabela).getRegistos().add(registoAtual);
-		elementos=0;
+		elementos = 0;
 		System.out.println("Registo criado com sucesso!");
 		menuUtilizador();
 	}
@@ -280,7 +291,12 @@ public class Utilizador {
 				if (dado.getChave().compareTo(chaveEvalor[0]) == 0) {
 					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
 						System.out.println("enter para sair");
-						System.out.println(dados.toString()+"\n--------------------------------------"); // aqui é que temos de comparar a chave com a chave que
+						System.out.println(dados.toString() + "\n--------------------------------------"); // aqui é que
+																											// temos de
+																											// comparar
+																											// a chave
+																											// com a
+																											// chave que
 					}
 				} else {
 					System.out.println("Nada encontrado");
@@ -351,44 +367,9 @@ public class Utilizador {
 		}
 
 	}
-	/*
-	 * public void deleteData() throws IOException { // PrintWriter object for
-	 * output.txt PrintWriter pw = new PrintWriter("dados.txt");
-	 * 
-	 * // BufferedReader object for input.txt BufferedReader br1 = new
-	 * BufferedReader(new FileReader("dados.txt"));
-	 * 
-	 * String line1 = br1.readLine();
-	 * 
-	 * // loop for each line of input.txt while(line1 != null) { boolean flag =
-	 * false;
-	 * 
-	 * // BufferedReader object for delete.txt BufferedReader br2 = new
-	 * BufferedReader(new FileReader("dados.txt"));
-	 * 
-	 * String line2 = br2.readLine();
-	 * 
-	 * // loop for each line of delete.txt while(line2 != null) {
-	 * if(line1.equals(line2)) { flag = true; break; }
-	 * 
-	 * line2 = br2.readLine(); }
-	 * 
-	 * // if flag = false // write line of input.txt to output.txt if(!flag)
-	 * pw.println(line1);
-	 * 
-	 * line1 = br1.readLine();
-	 * 
-	 * }
-	 * 
-	 * pw.flush();
-	 * 
-	 * // closing resources br1.close(); pw.close();
-	 * 
-	 * System.out.println("File operation performed successfully"); }
-	 */
 
 	public void iniciaDados() {
-
+		
 		try {
 
 			FileInputStream fi = new FileInputStream(new File("dados.txt"));
@@ -412,12 +393,14 @@ public class Utilizador {
 		System.out.println("Dados carregados com sucesso..");
 		System.out.println(arvore.getTabela("Tabela1"));
 		/*
-		System.out.println(arvore.getTabela("Tabela1").getRegistos().get(0).getClass());
-		
+		 * System.out.println(arvore.getTabela("Tabela1").getRegistos().get(0).getClass(
+		 * ));
+		 * 
 		 * Registo cena = (Registo) arvore.getTabela("Tabela1").getRegistos().get(0);
 		 * ChaveValor chave = (ChaveValor) cena.getArrayRegisto().get(0);
 		 * System.out.println(chave.getChave());
 		 */
+		ler();
 
 	}
 

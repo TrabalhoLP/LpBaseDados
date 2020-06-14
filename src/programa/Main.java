@@ -8,6 +8,7 @@ public class Main {
 		Utilizador programa = new Utilizador();
 		programa.iniciaDados();
 		
+		
 		programa.iniciar();
 		
 		//Arvore escola = new Arvore("Escola");
