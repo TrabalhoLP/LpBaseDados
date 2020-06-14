@@ -55,7 +55,7 @@ public class Registo implements Serializable {
 	 * }
 	 */
 
-	public void eliminarRegisto(String registo) {
+/*	public void eliminarRegisto(String registo) {
 		if (arrayRegisto.size() == 0) {// se nao houver nada dentro do array nao podemos remover nada
 			return;
 		} else {
@@ -67,9 +67,9 @@ public class Registo implements Serializable {
 				return;// caso nao seja encontrado nenhum indice
 			}
 		}
-	}
+	}*/
 
-	private int procura(String sair) {
+	/*private int procura(String sair) {
 		for (int i = 0; i < arrayRegisto.size(); i++) {
 			if ((arrayRegisto.get(i).getValor()) == sair) {// vai descobrir dentro do array a que indice corresponde a
 															// string que queremos retirar
@@ -79,9 +79,9 @@ public class Registo implements Serializable {
 
 		}
 		return -1;// caso nao seja encontrado nenhum indice
-	}
+	}*/
 
-	private void deslocarEsquerda(int index) {
+/*	private void deslocarEsquerda(int index) {
 		ArrayList novo = new ArrayList();
 		for (int i = 0; i < arrayRegisto.size() - 1; i++) {
 
@@ -98,9 +98,9 @@ public class Registo implements Serializable {
 
 		}
 		arrayRegisto = novo;
-	}
+	}*/
 
-	private void deslocarDireita() {// permite a insercao dos registos, ver se e necessaria
+/*	private void deslocarDireita() {// permite a insercao dos registos, ver se e necessaria
 		ArrayList novo = new ArrayList(arrayRegisto.size() + 1);
 		int i = 1;
 		for (Object registo : arrayRegisto) {
@@ -108,7 +108,7 @@ public class Registo implements Serializable {
 			i++;
 		}
 		arrayRegisto = novo;
-	}
+	}*/
 
 	// update no registo, procurar a posicao do registo no array e alterar para o
 	// valor introduzido
