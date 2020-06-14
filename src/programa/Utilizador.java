@@ -39,7 +39,7 @@ public class Utilizador {
 				if (verificaPassword(users.get(i), password)) {
 					menuUtilizador();
 
-					return users.get(i).getUsername() + users.get(i).getPassword();
+					return "Login correto!";           // users.get(i).getUsername() + users.get(i).getPassword(); 
 				}
 			}
 		}
@@ -63,11 +63,11 @@ public class Utilizador {
 
 		int opcao = 0;
 
-		System.out.println("Olá Bem vindo á base dados alternativa");
-		System.out.println("\nOpção 1 --> Entrar na base de dados, com utilizador existente");
-		System.out.println("\nOpção 2 --> Criar um utilizador");
-
-		System.out.println("\nIntroduz o valor da opção");
+		System.out.println("Ola! Bem vindo a base dados alternativa");
+		System.out.println("\n Opcao 1 --> Entrar na base de dados, com utilizador existente");
+		System.out.println("\n Opcao 2 --> Criar um utilizador");
+		System.out.println("\n Opcao 3 --> Encerrar");
+		System.out.println("\nIntroduz o valor da opcao");
 		opcao = ler.nextInt();
 
 		if (opcao == 1) {
@@ -90,6 +90,9 @@ public class Utilizador {
 			System.out.println(users);
 			escrever();
 
+		}
+		if(opcao==3) {// "desligar" a base de dados
+			return;
 		}
 
 	}
@@ -115,7 +118,7 @@ public class Utilizador {
 		} catch (IOException e) {
 			System.out.println("Error initializing stream");
 		}
-
+		iniciar();
 	}
 
 	public void ler() {
@@ -166,12 +169,12 @@ public class Utilizador {
 	private void obterRegistos() {// caso seja selecionada a primeira opcao
 		String query;
 		int opcao;
+		System.out.println("------------------Menu Manipular registos-------------");
 		System.out.println("1-Manipular registos");
-
 		System.out.println("2-Voltar ao Menu do Utilizador");
 		opcao = ler.nextInt();
 		if (opcao == 1) {
-			System.out.println("1-COMANDOS POSSIVEIS: \nCRIAR TABELA \nCONSULTAR TABELA \nCONSULTAR REGISTO");
+			System.out.println("1-COMANDOS POSSIVEIS: \nCRIAR TABELA \nELIMINAR TABELA \nCONSULTAR TABELA \nCONSULTAR REGISTO");
 			System.out.println("ELIMINAR REGISTO");
 			System.out.println("CRIAR REGISTO");
 			ler.nextLine();
@@ -196,6 +199,9 @@ public class Utilizador {
 				System.out.println("Nome da tabela a consultar");
 				String nome = ler.next();
 				consultarTabela(nome);
+			
+			} else if (query.compareTo("ELIMINAR TABELA") == 0) {
+			eliminarTabela();
 			}
 
 			else {// caso o comando seja escrito de forma incorreta
@@ -225,8 +231,12 @@ public class Utilizador {
 	private void consultarTabela(String nome) {
 
 		NoTabela tabela = arvore.getTabela(nome); // vai buscar ao metodo da arvore que ainda não esta totalmente
-													// otimizado
-		System.out.println(tabela.toString());
+		if(nome.equals(tabela))	{
+			System.out.println(tabela.toString());
+			menuUtilizador();
+		}
+		
+		System.out.println("Tabela nao existente!");	
 		menuUtilizador();
 	}
 
@@ -311,12 +321,39 @@ public class Utilizador {
 				} else {
 					System.out.println("Nada encontrado");
 				}
-
+				
 			}
+		
+			
 		}
 
 		menuUtilizador();
 
+	}
+	private void eliminarTabela() {
+		int opcao;
+		System.out.println("Qual a tabela que pretende eliminar?");
+		String nomeTabela= ler.nextLine();
+		ArrayList tabelaERegistosAApagar = arvore.getTabela(nomeTabela).getRegistos();
+		if(!tabelaERegistosAApagar.isEmpty()) {
+		System.out.println("Ao realizar esta opera��o, vai perder todos os dados existentes na tabela!");
+		System.out.println("1-Caso pretenda prosseguir com a elimina��o da tabela");
+		System.out.println("2-Caso pretenda regressar ao menu anterior");
+		opcao=ler.nextInt();
+		if(opcao==1) {
+			NoTabela aRetirar=arvore.getTabela(nomeTabela);
+			arvore.getTabelas().remove(aRetirar);
+			System.out.println("Tabela eliminada com sucesso!");
+		}
+		if(opcao==2) {
+			obterRegistos();
+		}
+		}else {
+			NoTabela aRetirar=arvore.getTabela(nomeTabela);
+			arvore.getTabelas().remove(aRetirar);
+			System.out.println("Tabela eliminada com sucesso!");
+		}
+		
 	}
 
 	private void eliminarRegisto() {
@@ -324,6 +361,7 @@ public class Utilizador {
 		String nomeTabela, nomeRegisto;
 		System.out.println("Qual o nome da tabela na qual pretende eliminar o registo?");
 		nomeTabela = ler.nextLine();
+		
 		System.out.println("chave:valor separa a chave do valor com : ");
 		nomeRegisto = ler.nextLine();
 
@@ -346,8 +384,9 @@ public class Utilizador {
 						escolha = ler.nextInt();
 						if (escolha == 1) {
 							dados.remove(y); // remover o objecto que lá esta
+							
 						} else {
-							return;
+							obterRegistos();
 						}
 					}
 				} else {

@@ -15,6 +15,11 @@ public class Arvore implements Serializable{
 	
 	private User user []; // depois vemos se vale a pena implementar
 	// este user, seria uma lista que guarda os utilizadores.
+	
+	
+	
+	
+	
 	public Arvore () {
 		
 		contaTabelas = 0;
@@ -35,6 +40,13 @@ public class Arvore implements Serializable{
 			}
 		}
 		return null;// temos de mudar isto para encontrar a tabela pelo o nome
+	}
+
+
+
+	public ArrayList<NoTabela> getTabelas() {
+		// TODO Auto-generated method stub
+		 return this.tabelas;
 	}
 	
 	//remover tabela //tem de se ver se tem coisas ou não;
