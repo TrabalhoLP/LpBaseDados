@@ -21,7 +21,7 @@ public class NoTabela implements Serializable {
 		 * tabela tem Este NumColunas, serve para criar uma lista String colunas Para
 		 * que o utilizador depois diga o nome de cada campo
 		 */
-		this.registos = new ArrayList();// depois temos de alterar este tipo de lista
+		this.registos = new ArrayList();
 
 	}
 

@@ -6,16 +6,13 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Utilizador programa = new Utilizador();
+		
 		programa.iniciaDados();
 		
 		
 		programa.iniciar();
 		
-		//Arvore escola = new Arvore("Escola");
-		
-		//escola.criaTabela("Alunos", 2);
-		//escola.getTabela().registo();
-		
+	
 		
 	}
 

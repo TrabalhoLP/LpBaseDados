@@ -13,7 +13,7 @@ import jdk.jshell.spi.ExecutionControl.UserException;
 
 public class Utilizador {
 
-	private Arvore arvore; // o objecto
+	private Arvore arvore; // a raiz da arvore
 	private User user;
 	private Scanner ler = new Scanner(System.in);
 	private ArrayList<User> users = new ArrayList<User>();
@@ -29,17 +29,16 @@ public class Utilizador {
 		registosEverybody = new ArrayList<User>();
 	}
 
-	// Há um utilizador no array? temos de criar um user
+	
 
 	public String procurarUsername(String username, String password) {// procurar username no arraylist onde se
 																		// encontram os usernames
 		for (int i = 0; i < users.size(); i++) {
-			System.out.println(users.get(i));
 			if (username.compareTo(users.get(i).getUsername()) == 0) {
 				if (verificaPassword(users.get(i), password)) {
 					menuUtilizador();
 
-					// users.get(i).getUsername() + users.get(i).getPassword();
+					
 				}
 			}
 		}
@@ -73,21 +72,18 @@ public class Utilizador {
 		if (opcao == 1) {
 			// introduz a password
 			String username, password;
-			System.out.println(users.toString());
-			// ler();
 			System.out.println("Username?");
 			ler.nextLine();
 			username = ler.nextLine();
 			System.out.println("Password?");
 			password = ler.nextLine();
 
-			procurarUsername(username, password);// sysout
+			procurarUsername(username, password);
 			iniciar();
 
 		}
 
 		if (opcao == 2) {// criar novo utilizador
-			System.out.println(users);
 			registarNovoUser();// escrever()
 
 		}
@@ -103,7 +99,7 @@ public class Utilizador {
 		}
 	}
 
-	public void registarNovoUser() {// escrever()
+	public void registarNovoUser() {
 
 		System.out.println("Username:");
 		String username = ler.next();
@@ -128,7 +124,7 @@ public class Utilizador {
 		iniciar();
 	}
 
-	public void procurarUsersEPassAposCarregamentoDeDados() {// ler()
+	public void procurarUsersEPassAposCarregamentoDeDados() {
 
 		try {
 
@@ -139,7 +135,7 @@ public class Utilizador {
 
 			users = (ArrayList) oi.readObject();
 
-			System.out.println(users.toString());
+			
 
 			oi.close();
 			fi.close();
@@ -157,7 +153,7 @@ public class Utilizador {
 
 	public void menuUtilizador() {
 		saveData();
-		// System.out.println(arvore.getTabela("Tabela1"));
+		
 		int opcao;
 		System.out.println("------------------Menu do utilizador-----------------------");
 		System.out.println("1: Manipular registos");
@@ -172,12 +168,12 @@ public class Utilizador {
 
 	}
 
-	private void manipularRegistos() {// caso seja selecionada a primeira opcao // obterRegisto()
+	private void manipularRegistos() {
 		String query;
 		int opcao;
 		System.out.println("------------------Menu Manipular Registos-------------");
-		System.out.println("1-Manipular registos");
-		System.out.println("2-Voltar ao Menu do Utilizador");
+		System.out.println("1:Manipular registos");
+		System.out.println("2:Voltar ao Menu do Utilizador");
 		opcao = ler.nextInt();
 		if (opcao == 1) {
 			System.out.println(
@@ -334,9 +330,9 @@ public class Utilizador {
 	private void atualizarRegistos() {
 		String nomeRegisto, nomeTabela;
 		int escolha;
-		System.out.println("Qual o nome da tabela que pretende consultar?");
+		System.out.println("Qual o nome da tabela que pretende atualizar?");
 		nomeTabela = ler.nextLine();
-		System.out.println("Indique o registo que pretende consultar atraves da notacao campo:valor");
+		System.out.println("Indique o registo que pretende atualizar atraves da notacao campo:valor");
 		nomeRegisto = ler.nextLine();
 		String chaveEvalor[] = splice(nomeRegisto);
 
@@ -491,16 +487,8 @@ public class Utilizador {
 		}
 
 		System.out.println("Dados carregados com sucesso..");
-		// System.out.println(arvore.getTabela("Tabela1"));
-		/*
-		 * System.out.println(arvore.getTabela("Tabela1").getRegistos().get(0).getClass(
-		 * ));
-		 * 
-		 * Registo cena = (Registo) arvore.getTabela("Tabela1").getRegistos().get(0);
-		 * ChaveValor chave = (ChaveValor) cena.getArrayRegisto().get(0);
-		 * System.out.println(chave.getChave());
-		 */
-		procurarUsersEPassAposCarregamentoDeDados();// ler()
+		
+		procurarUsersEPassAposCarregamentoDeDados();
 
 	}
 

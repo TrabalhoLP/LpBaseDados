@@ -5,16 +5,12 @@ import java.util.ArrayList;
 
 public class Arvore implements Serializable{
 	
-	// conexao
-
-	
 	private static final long serialVersionUID = 1L;
 	private String nome;
 	private ArrayList <NoTabela> tabelas;
 	private int contaTabelas;
 	
-	private User user []; // depois vemos se vale a pena implementar
-	// este user, seria uma lista que guarda os utilizadores.
+	private User user []; 
 	
 	
 	
@@ -23,7 +19,7 @@ public class Arvore implements Serializable{
 	public Arvore () {
 		
 		contaTabelas = 0;
-		tabelas = new ArrayList(); //  default para a quantidade de tabelas
+		tabelas = new ArrayList(); 
 	}
 
 	public void criaTabela(String nome) {
@@ -39,7 +35,7 @@ public class Arvore implements Serializable{
 				return tabelas.get(i);
 			}
 		}
-		return null;// temos de mudar isto para encontrar a tabela pelo o nome
+		return null;
 	}
 
 
@@ -49,7 +45,7 @@ public class Arvore implements Serializable{
 		 return this.tabelas;
 	}
 	
-	//remover tabela //tem de se ver se tem coisas ou não;
+	
 	
 	
 }
