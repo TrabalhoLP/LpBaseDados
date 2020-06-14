@@ -215,18 +215,6 @@ public class Utilizador {
 		}
 	}
 
-	/*
-	 * private void criaRegisto() { String nomeTabela; int tamanhoTabela; ArrayList
-	 * <Registo> registos= new ArrayList <Registo>(); registos.setID();
-	 * System.out.println("Qual o nome que pretende dar ï¿½ tabela?");
-	 * nomeTabela=ler.next();
-	 * System.out.println("Qual o tamanho da tabela que pretende criar?");
-	 * tamanhoTabela=ler.nextInt(); Arvore escola = new Arvore("Escola");
-	 * escola.criaTabela(nomeTabela, tamanhoTabela);//dar nome a tabela
-	 * escola.getTabela().registo();//registar tabela obterRegistos();
-	 * 
-	 * }
-	 */
 
 	private void consultarTabela(String nome) {
 
@@ -336,14 +324,16 @@ public class Utilizador {
 		String nomeTabela= ler.nextLine();
 		ArrayList tabelaERegistosAApagar = arvore.getTabela(nomeTabela).getRegistos();
 		if(!tabelaERegistosAApagar.isEmpty()) {
-		System.out.println("Ao realizar esta operação, vai perder todos os dados existentes na tabela!");
-		System.out.println("1-Caso pretenda prosseguir com a eliminação da tabela");
+		System.out.println("Ao realizar esta operaï¿½ï¿½o, vai perder todos os dados existentes na tabela!");
+		System.out.println("1-Caso pretenda prosseguir com a eliminaï¿½ï¿½o da tabela");
 		System.out.println("2-Caso pretenda regressar ao menu anterior");
 		opcao=ler.nextInt();
 		if(opcao==1) {
 			NoTabela aRetirar=arvore.getTabela(nomeTabela);
 			arvore.getTabelas().remove(aRetirar);
 			System.out.println("Tabela eliminada com sucesso!");
+			menuUtilizador();
+
 		}
 		if(opcao==2) {
 			obterRegistos();
@@ -352,6 +342,7 @@ public class Utilizador {
 			NoTabela aRetirar=arvore.getTabela(nomeTabela);
 			arvore.getTabelas().remove(aRetirar);
 			System.out.println("Tabela eliminada com sucesso!");
+			menuUtilizador();
 		}
 		
 	}
@@ -378,13 +369,15 @@ public class Utilizador {
 
 				if (dado.getChave().compareTo(chaveEvalor[0]) == 0) {
 					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
-						System.out.println("Encontramos este registo deseja eliminar? 0-Para nÃ£o  ----  1-para sim");
+						System.out.println("Encontramos este registo deseja eliminar? 0-Para nÃ£o  ----  1-para sim ---- 2-para elmininar todo o registo");
 						System.out.println(dados.toString()); // aqui Ã© que temos de comparar a chave com a chave que
 																// recebemos;
 						escolha = ler.nextInt();
 						if (escolha == 1) {
 							dados.remove(y); // remover o objecto que lÃ¡ esta
 							
+						}else if(escolha == 2) {
+							TodosRegistos.remove(i); // remove o registo todo
 						} else {
 							obterRegistos();
 						}
