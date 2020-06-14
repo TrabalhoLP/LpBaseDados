@@ -29,7 +29,7 @@ public class Utilizador {
 	}
 
 	// Há um utilizador no array? temos de criar um user
-
+	
 	public String procurarUsername(String username, String password) {// procurar username no arraylist onde se
 																		// encontram os usernames
 		for (int i = 0; i < users.size(); i++) {
@@ -257,9 +257,9 @@ public class Utilizador {
 		String nomeRegisto, nomeTabela;
 		System.out.println("Qual o nome da tabela que pretende consultar?");
 		nomeTabela=ler.nextLine();
-		System.out.println("Qual o nome do registo que pretende consultar?");
+		System.out.println("Introduz chave e depois valor chave:valor separado com :");
 		nomeRegisto=ler.nextLine();
-		System.out.println(arvore.getTabela(nomeTabela).getRegisto(nomeRegisto).toString());
+		
 		menuUtilizador();
 		}
 
@@ -267,29 +267,22 @@ public class Utilizador {
 		String nomeTabela,nomeRegisto;
 		System.out.println("Qual o nome da tabela na qual pretende eliminar o registo?");
 		nomeTabela=ler.nextLine();
-		System.out.println("Qual o nome do registo que pretende eliminar?");
+		System.out.println("chave:valor separa a chave do valor com : ");
 		nomeRegisto=ler.nextLine();
 		
-			 
-		int elementos;
-			 String valor;
-			 Registo registoAtual = new Registo();
-			 registoAtual.setNome(nomeRegisto);
-			 registoAtual.setUniqueID();
-			 registoAtual.getArrayRegisto();
-			 
-			System.out.println("Quantos elementos vais eliminar?");
-			 elementos = ler.nextInt();
-			 
-			 for (int i =1; i < elementos; i++) {//NAO ESTA A FUNCIONAR CORRETAMENTE
-				 System.out.println("Introduz o valor: "+(i));
-				 valor  = ler.nextLine();
-				 arvore.getTabela(nomeTabela).getRegisto(nomeRegisto).eliminarRegisto(valor);;
-				 
-			 }
-			 System.out.println("Eliminado(s) com sucesso!");
-			 menuUtilizador();
+		ArrayList TodosRegistos = arvore.getTabela(nomeTabela).getRegistos();
+		
+		for (int i=0; i<TodosRegistos.size(); i++) {
+			Registo registoAtual = (Registo) TodosRegistos.get(i);
+			ArrayList dados = registoAtual.getArrayRegisto();
+
+			for (int y=0; y<registoAtual.getArrayRegisto().size(); y++) {
+				ChaveValor dado = (ChaveValor) dados.get(y);
+				System.out.println(dado.toString()); // aqui é que temos de comparar a chave com a chave que recebemos;
+			}
 		}
+		
+	}
 	
 	public void saveData() {
 
@@ -385,6 +378,12 @@ public class Utilizador {
 		
 		System.out.println("Dados carregados com sucesso..");
 		System.out.println(arvore.getTabela("Tabela1"));
+		System.out.println(arvore.getTabela("Tabela1").getRegistos().get(0).getClass());
+		/*
+		Registo cena = (Registo) arvore.getTabela("Tabela1").getRegistos().get(0);
+		ChaveValor chave = (ChaveValor) cena.getArrayRegisto().get(0);
+		System.out.println(chave.getChave());
+		 */
 		
 	}
 
