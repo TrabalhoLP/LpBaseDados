@@ -68,7 +68,7 @@ public class Utilizador {
 		System.out.println("\n Opcao 3 --> Encerrar");
 		System.out.println("\nIntroduz o valor da opcao");
 		opcao = ler.nextInt();
-
+		
 		
 		if (opcao == 1) {
 			// introduz a password
@@ -83,15 +83,17 @@ public class Utilizador {
 			iniciar();
 
 		}
+		
+		if (opcao == 3) // "desligar" a base de dados
+			return;
+		
 
 		if (opcao == 2) {// criar novo utilizador
 			registarNovoUser();
 
 		}
 
-		if (opcao == 3) {// "desligar" a base de dados
-			return;
-		}
+		
 
 	}
 
@@ -162,13 +164,13 @@ public class Utilizador {
 		System.out.println("2:Manipular registos");
 		opcao = ler.nextInt();
 		if (opcao == 1) {
-			iniciar();
+			return;
 		}
 		if (opcao == 2) {
 			
 			manipularRegistos();
 		}
-
+		
 	}
 
 	private void manipularRegistos() {
@@ -177,6 +179,7 @@ public class Utilizador {
 		System.out.println("------------------Menu Manipular Registos-------------");
 		System.out.println("1:Manipular registos");
 		System.out.println("2:Voltar ao Menu do Utilizador");
+		System.out.println("3:Voltar ao menu iniciar");
 		opcao = ler.nextInt();
 		if (opcao == 1) {
 			System.out.println(
@@ -225,6 +228,9 @@ public class Utilizador {
 		if (opcao == 2) {
 			menuUtilizador();
 		}
+		if(opcao==3) { 
+			return;
+		}
 	}
 
 	private void consultarTabela(String nome) {
@@ -258,7 +264,7 @@ public class Utilizador {
 
 			System.out.println("Nome do Campo?");
 			valorChave = ler.nextLine();
-			if (valorChave.compareTo("EXIT") == 0) {
+			if (valorChave.compareTo("EXIT") == 0  || valor.compareTo("EXIT")==0) {
 				if (elementos == 0) {
 					menuUtilizador();
 				}
@@ -311,15 +317,10 @@ public class Utilizador {
 				if (dado.getChave().compareTo(chaveEvalor[0]) == 0) {
 					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
 						System.out.println("Prima ENTER para sair");
-						System.out.println(dados.toString() + "\n--------------------------------------"); // aqui é que
-																											// temos de
-																											// comparar
-																											// a chave
-																											// com a
-																											// chave que
-					}
+						System.out.println(dados.get(y).toString() ); 
+														}
 				} else {
-					System.out.println("Nada encontrado");
+					System.out.println("          ");// caso nao seja ou ainda nao tenha sido encontrado
 				}
 
 			}
@@ -358,11 +359,7 @@ public class Utilizador {
 						dado.setValor(valor);
 
 						System.out.println("Dados atualizados");
-						// temos de
-						// comparar
-						// a chave
-						// com a
-						// chave que
+						
 					}
 				}
 
@@ -439,15 +436,14 @@ public class Utilizador {
 							manipularRegistos();
 						}
 					}
-				} else {
-					System.out.println(" ");
-				}
-				System.out.println("Nada encontrado!");
+			
 			}
+		
+			
 		}
 		menuUtilizador();
 	}
-
+	}
 	public void saveData() {
 
 		try {
