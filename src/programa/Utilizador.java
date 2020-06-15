@@ -17,8 +17,6 @@ public class Utilizador {
 	private User user;
 	private Scanner ler = new Scanner(System.in);
 	private ArrayList<User> users = new ArrayList<User>();
-	// substuir isto pela classe user. ou seja depois temos um array de objectos
-	// user
 	private int contaRegisto;
 
 	private ArrayList<User> registosEverybody;
@@ -264,7 +262,7 @@ public class Utilizador {
 
 		while (valor.compareTo("EXIT") != 0) {
 
-			System.out.println("Nome do Campo?");
+			System.out.println("Nome da chave?");
 			valorChave = ler.nextLine();
 			if (valorChave.compareTo("EXIT") == 0  || valor.compareTo("EXIT")==0) {
 				if (elementos == 0) {
@@ -353,10 +351,10 @@ public class Utilizador {
 				
 				if (dado.getChave().compareTo(chaveEvalor[0]) == 0) {
 					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
-						System.out.println("Introduza uma nova designacao para o chave:");
+						System.out.println("Introduza uma nova designacao para a chave:");
 						String campo = ler.nextLine();
 						dado.setChave(campo);
-						System.out.println("Introduza uma nova designacao para o valor do campo:");
+						System.out.println("Introduza uma nova designacao para o valor da chave:");
 						String valor = ler.nextLine();
 						dado.setValor(valor);
 
@@ -426,6 +424,7 @@ public class Utilizador {
 					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
 						System.out.println("Encontramos este registo deseja eliminar? "
 								+ "0-Para nao\t 1-Para sim\t 2-para eliminar todo o registo");
+						System.out.println("Caso a tabela possua apenas um registo e pretenda eliminar o id correspondente ao registo, selecione a opcao 3 ");
 						System.out.println(dados.toString()); // aqui é que temos de comparar a chave com a chave que
 																// recebemos;
 						escolha = ler.nextInt();
@@ -443,8 +442,9 @@ public class Utilizador {
 		
 			
 		}
-		menuUtilizador();
+		
 	}
+		menuUtilizador();
 	}
 	public void saveData() {
 
