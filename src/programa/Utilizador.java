@@ -317,7 +317,7 @@ public class Utilizador {
 				if (dado.getChave().compareTo(chaveEvalor[0]) == 0) {
 					if (dado.getValor().compareTo(chaveEvalor[1]) == 0) {
 						System.out.println("Prima ENTER para sair");
-						System.out.println(dados.get(y).toString() ); 
+						System.out.println(registoAtual.toString() ); 
 														}
 				} else {
 					System.out.println("          ");// caso nao seja ou ainda nao tenha sido encontrado
