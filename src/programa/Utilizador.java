@@ -302,6 +302,7 @@ public class Utilizador {
 		System.out.println("Qual o nome da tabela que pretende consultar?");
 		nomeTabela = ler.nextLine();
 		System.out.println("Indique o registo que pretende consultar atraves da notacao campo:valor");
+		System.out.println("Isto permite aceder a registos da tabela atraves dos conjuntos chave:valor desses registos");
 		nomeRegisto = ler.nextLine();
 		String chaveEvalor[] = splice(nomeRegisto);
 
